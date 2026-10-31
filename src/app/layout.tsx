@@ -3,6 +3,7 @@ import { Space_Grotesk, Montserrat, Geist } from "next/font/google";
 import "./globals.css";
 import { cn } from "@/lib/utils";
 import Navbar from "@/components/home/Navbar";
+import Footer from "@/components/home/Footer";
 
 const geist = Geist({subsets:['latin'],variable:'--font-sans'});
 
@@ -34,6 +35,7 @@ export default function RootLayout({
       <body className="min-h-full flex flex-col font-paragraph">
         <Navbar></Navbar>
         {children}
+        {/* <Footer></Footer> */}
       </body>
     </html>
   );
