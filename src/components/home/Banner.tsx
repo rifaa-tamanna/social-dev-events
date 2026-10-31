@@ -42,7 +42,7 @@ const Banner = () => {
           </h1>
 
           {/* Main Description */}
-          <p className="text-gray-400 text-base md:text-lg leading-relaxed max-w-xl">
+          <p className="text-[#D6CDBD] text-base md:text-lg leading-relaxed max-w-xl">
             Discover meaningful events, connect with passionate people, and turn
             small actions into powerful social change. Your next opportunity to
             inspire starts here.
@@ -80,7 +80,6 @@ const Banner = () => {
         </div>
       </div>
 
-      {/* Centered Stats Counter Section */}
       {/* Centered Stats Counter Section */}
       <div className="max-w-6xl mx-auto mt-20 pt-10 border-t border-white/10 flex flex-col md:flex-row items-center justify-center gap-8 md:gap-16 text-center">
         {/* Stat 1 */}
