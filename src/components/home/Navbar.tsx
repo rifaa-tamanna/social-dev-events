@@ -12,12 +12,14 @@ const Navbar = () => {
       <div className="max-w-7xl mx-auto flex items-center justify-between">
         
         {/* Left Side: Logo */}
+        <Link href={'/'}>
         <Image 
             src='/soci-dev-logo.png'
             width={120}
             height={120}
             alt="Development Logo"
         />
+        </Link>
 
         {/* Middle: Upcoming Events (Desktop) */}
         <div className="hidden md:flex items-center gap-2 font-['Space_Grotesk'] text-[#D6CDBD]">
