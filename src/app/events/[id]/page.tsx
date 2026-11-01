@@ -1,20 +1,3 @@
-// const EventDetailsPage = async({params}) => {
-//     const {id} = await params
-
-//     const res = await fetch(`http://localhost:5000/events/${id}`)
-//     const data = await res.json()
-
-//     console.log('data', data)
-//     return (
-//         <div>
-            
-//         </div>
-//     );
-// };
-
-// export default EventDetailsPage;
-
-
 import Image from "next/image";
 import Link from "next/link";
 import {
