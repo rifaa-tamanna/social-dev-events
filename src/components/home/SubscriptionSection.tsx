@@ -21,7 +21,7 @@ const SubscriptionSection = () => {
       {/* Background Image with Overlay */}
       <div className="absolute inset-0 z-0">
         <Image
-          src="/speaker-bg.jpg" // 1st picture background path
+          src="/speakers/speaker-bg.jpg" // 1st picture background path
           alt="Audience Background"
           fill
           className="object-cover object-center"
