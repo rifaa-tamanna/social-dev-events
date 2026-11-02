@@ -13,11 +13,22 @@ interface Event {
   organizerEmail?: string;
 }
 
+// Render on every request so a newly created event shows up
+// in this list straight away.
+export const dynamic = "force-dynamic";
+
 const AllEventsPage = async () => {
-  const res = await fetch('http://localhost:5000/events', {
-    cache: 'no-store',
-  });
-  const events: Event[] = await res.json();
+  let events: Event[] = [];
+
+  try {
+    const res = await fetch("http://localhost:5000/events", {
+      cache: "no-store",
+    });
+    const data = await res.json();
+    events = Array.isArray(data) ? data : [];
+  } catch (error) {
+    console.error("Failed to fetch events:", error);
+  }
 
   return (
     <div className="min-h-screen bg-[#0A0A0E] text-white py-16 px-6 md:px-12 font-['Space_Grotesk'] relative overflow-hidden">

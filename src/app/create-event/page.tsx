@@ -2,9 +2,10 @@
 
 import { useState } from "react";
 import Link from "next/link";
+import { useRouter } from "next/navigation";
+import { authClient } from "@/lib/auth-client";
 import {
   ArrowLeft,
-  Calendar,
   MapPin,
   Image as ImageIcon,
   Sparkles,
@@ -12,6 +13,14 @@ import {
 } from "lucide-react";
 
 const CreateEventPage = () => {
+  const router = useRouter();
+
+  // Signed-in user (Gmail / email & password) session from better-auth
+  const { data: session, isPending } = authClient.useSession();
+  const organizerEmail = session?.user?.email ?? "";
+
+  const [isSubmitting, setIsSubmitting] = useState(false);
+
   const [formData, setFormData] = useState({
     title: "",
     type: "Donation",
@@ -19,7 +28,6 @@ const CreateEventPage = () => {
     location: "",
     thumbnail: "",
     description: "",
-    organizerEmail: "rifa@gmail.com",
   });
 
   const handleChange = (
@@ -37,21 +45,56 @@ const CreateEventPage = () => {
     });
   };
 
-  const handleSubmit = async(e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
 
-    const res = await fetch('http://localhost:5000/create-event', {
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/json'
-      },
-      body: JSON.stringify(formData)
-    })
+    // Session still loading -> ask the user to wait a moment
+    if (isPending) {
+      alert("Checking your sign in status, please try again in a moment.");
+      return;
+    }
 
-    const data = await res.json()    
+    // Not signed in -> send them to the sign in page
+    if (!organizerEmail) {
+      alert("Please sign in with your account before publishing an event.");
+      router.push("/signin");
+      return;
+    }
 
-    console.log("Event Data Submitted:", data);
-    alert("Event Published Successfully!");
+    setIsSubmitting(true);
+
+    try {
+      const res = await fetch("http://localhost:5000/create-event", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        // Attach the signed-in user's email so the event shows up
+        // on the Upcoming Events list and on their Manage Events page.
+        body: JSON.stringify({ ...formData, organizerEmail }),
+      });
+
+      if (!res.ok) {
+        throw new Error(`Event creation failed with status ${res.status}`);
+      }
+
+      const data = await res.json();
+
+      console.log("Event Data Submitted:", data);
+      alert("Event Published Successfully!");
+
+      // Take the organizer straight to their dashboard so the
+      // freshly created event is visible right away.
+      router.push("/manage-event");
+      router.refresh();
+    } catch (error) {
+      console.error("Failed to publish event:", error);
+      alert(
+        "Failed to publish the event. Please make sure the server is running and try again.",
+      );
+    } finally {
+      setIsSubmitting(false);
+    }
   };
 
   return (
@@ -254,7 +297,8 @@ const CreateEventPage = () => {
                 Organizer Email attached:
               </span>
               <span className="text-sm font-semibold text-white bg-[#0A0A0E] px-3 py-1.5 rounded-lg border border-white/10 w-fit">
-                {formData.organizerEmail}
+                {organizerEmail ||
+                  (isPending ? "Checking session..." : "Sign in to attach your email")}
               </span>
             </div>
 
@@ -262,10 +306,13 @@ const CreateEventPage = () => {
             <div className="pt-4">
               <button
                 type="submit"
-                className="w-full py-4 rounded-xl font-bold text-white bg-gradient-to-r from-[#F08C2F] to-[#884AE9] hover:opacity-90 transition duration-300 shadow-lg shadow-[#00a884]/20 flex items-center justify-center gap-2 text-base cursor-pointer"
+                disabled={isSubmitting || isPending}
+                className="w-full py-4 rounded-xl font-bold text-white bg-gradient-to-r from-[#F08C2F] to-[#884AE9] hover:opacity-90 transition duration-300 shadow-lg shadow-[#00a884]/20 flex items-center justify-center gap-2 text-base cursor-pointer disabled:opacity-60 disabled:cursor-not-allowed"
               >
                 <PlusCircle className="w-5 h-5" />
-                <span>Publish Event</span>
+                <span>
+                  {isSubmitting ? "Publishing Event..." : "Publish Event"}
+                </span>
               </button>
             </div>
           </form>

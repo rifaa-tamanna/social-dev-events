@@ -7,7 +7,7 @@ import Footer from "@/components/home/Footer";
 import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 
-const geist = Geist({subsets:['latin'],variable:'--font-sans'});
+const geist = Geist({ subsets: ["latin"], variable: "--font-sans" });
 
 const spaceGrotesk = Space_Grotesk({
   variable: "--font-space-grotesk",
@@ -32,12 +32,21 @@ export default function RootLayout({
   return (
     <html
       lang="en"
-      className={cn("h-full", "antialiased", spaceGrotesk.variable, montserrat.variable, "font-sans", geist.variable)}
+      className={cn(
+        "h-full",
+        "antialiased",
+        spaceGrotesk.variable,
+        montserrat.variable,
+        "font-sans",
+        geist.variable,
+      )}
     >
       <body className="min-h-full flex flex-col font-paragraph">
         <Navbar></Navbar>
         {children}
         <Footer></Footer>
+
+        <ToastContainer position="top-center" autoClose={3000} theme="dark" />
       </body>
     </html>
   );

@@ -1,118 +1,216 @@
+import { auth } from "@/lib/auth";
+import { headers } from "next/headers";
+import Image from "next/image";
+import Link from "next/link";
+import { 
+  Calendar, 
+  MapPin, 
+  User, 
+  PlusCircle, 
+  Eye, 
+  Edit3, 
+  Trash2, 
+  Sparkles, 
+  ShieldAlert 
+} from "lucide-react";
 
+interface EventItem {
+  _id: string;
+  title: string;
+  type: string;
+  date: string;
+  location: string;
+  thumbnail: string;
+  description: string;
+  organizerEmail?: string;
+}
 
-// import { useEffect, useState } from "react";
-// // Shadcn UI অথবা সাধারণ কম্পোনেন্ট ব্যবহার করতে পারেন
-// import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
-// import { Button } from "@/components/ui/button";
-// import { Trash2, Edit } from "lucide-react"; // Lucide Icon থেকে আইকন
-// import { auth } from "@/lib/auth";
-// import headers from "next/headers"
+// Always render this page per request so a freshly published event
+// shows up immediately instead of being served from a prerendered page.
+export const dynamic = "force-dynamic";
 
+const ManageEventPage = async () => {
+  // ==================== 1. AUTH & DATA FETCHING SECTION ====================
+  const session = await auth.api.getSession({
+    headers: await headers(),
+  });
+  const user = session?.user;
 
+  // Fetching user specific created events from backend API
+  let createEvent: EventItem[] = [];
+  try {
+    if (user?.email) {
+      const res = await fetch(
+        `http://localhost:5000/my-events/${encodeURIComponent(user.email)}`,
+        {
+          cache: "no-store",
+        },
+      );
+      const data = await res.json();
+      createEvent = Array.isArray(data) ? data : [];
+    }
+  } catch (error) {
+    console.error("Failed to fetch user events:", error);
+  }
 
-// interface EventType {
-//   _id: string;
-//   title: string;
-//   description: string;
-//   date: string;
-//   location: string;
-//   user: string
-// }
+  return (
+    <div className="min-h-screen bg-[#0A0A0E] text-white py-12 px-6 md:px-12 font-['Space_Grotesk'] relative overflow-hidden">
+      
+      {/* Background Ambient Glow Effects */}
+      <div className="absolute top-20 left-10 w-96 h-96 bg-[#F08C2E]/10 rounded-full blur-[140px] pointer-events-none" />
+      <div className="absolute bottom-10 right-10 w-96 h-96 bg-[#8E54DF]/15 rounded-full blur-[140px] pointer-events-none" />
 
-// export default async function ManageEventPage() {
-// const session = await auth.api.getSession({
-//   headers  //aro kaj korte hobe
-// })
+      <div className="max-w-7xl mx-auto relative z-10">
+        
+        {/* ==================== 2. HEADER SECTION ==================== */}
+        <div className="flex flex-col md:flex-row md:items-center justify-between gap-6 mb-12 pb-8 border-b border-white/10">
+          <div>
+            {/* Dashboard Badge */}
+            <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-white/5 border border-white/10 text-xs md:text-sm font-medium tracking-wide mb-4 backdrop-blur-md">
+              <Sparkles className="w-4 h-4 text-[#F08C2E]" />
+              <span className="uppercase text-[#D6CDBD] tracking-widest font-semibold">
+                Organizer Dashboard
+              </span>
+            </div>
 
+            {/* Page Title */}
+            <h1 className="text-3xl sm:text-4xl lg:text-5xl font-bold tracking-tight text-white mb-2">
+              Manage My Events
+            </h1>
 
-//   const [events, setEvents] = useState<EventType[]>([]);
-//   const [loading, setLoading] = useState(true);
+            {/* Subtitle Description */}
+            <p className="text-[#D6CDBD] text-sm md:text-base max-w-2xl">
+              View, edit, and manage the social drives you have published. Only you have permission to edit or delete your created initiatives.
+            </p>
+          </div>
 
-//   ধরে নিচ্ছি ইউজারের ইমেইল কোনো স্টেট বা সেশন থেকে পাচ্ছেন
-//   const userEmail = "user@example.com"; // এখানে আপনার অথেন্টিকেশন সিস্টেমের ইউজার ইমেইল বসবে
+          {/* Create New Event Button */}
+          <Link
+            href="/create-event"
+            className="inline-flex items-center gap-2 bg-gradient-to-r from-[#F08C2F] to-[#884AE9] text-white font-bold px-6 py-3.5 rounded-xl hover:opacity-90 transition duration-300 shadow-lg shadow-[#00a884]/20 text-sm sm:text-base flex-shrink-0 w-fit"
+          >
+            <PlusCircle className="w-5 h-5" />
+            <span>Create New Event</span>
+          </Link>
+        </div>
 
-//   useEffect(() => {
-//     async function fetchMyEvents() {
-//       try {
-//         const res = await fetch(`http://localhost:5000/api/events/my-events?email=${userEmail}`);
-//         const data = await res.json();
-//         setEvents(data);
-//       } catch (error) {
-//         console.error("Error fetching events:", error);
-//       } finally {
-//         setLoading(false);
-//       }
-//     }
+        {/* ==================== 3. EVENTS GRID SECTION ==================== */}
+        {createEvent && createEvent.length > 0 ? (
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+            {createEvent.map((event) => (
+              <div
+                key={event._id}
+                className="bg-[#121218]/90 backdrop-blur-xl border border-white/10 rounded-3xl overflow-hidden shadow-2xl flex flex-col justify-between group hover:border-[#F08C2E]/40 transition-all duration-300"
+              >
+                <div>
+                  {/* Thumbnail Image Container */}
+                  <div className="relative w-full h-52 overflow-hidden bg-black/40">
+                    <Image
+                      src={event.thumbnail || "https://images.unsplash.com/photo-1531206715517-5c0ba140b2b8"}
+                      alt={event.title || "Event Banner"}
+                      fill
+                      className="object-cover group-hover:scale-105 transition-transform duration-500"
+                    />
+                    
+                    {/* Event Type Badge on Top */}
+                    <div className="absolute top-4 left-4 inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-[#0A0A0E]/75 backdrop-blur-md border border-white/15 text-xs font-medium text-[#00a884]">
+                      <span className="w-2 h-2 rounded-full bg-[#00a884] animate-pulse" />
+                      <span>{event.type || "Community Drive"}</span>
+                    </div>
 
-//     if (userEmail) {
-//       fetchMyEvents();
-//     }
-//   }, [userEmail]);
+                    {/* Event Date Badge on Bottom Left */}
+                    <div className="absolute bottom-3 left-4 inline-flex items-center gap-1.5 px-3 py-1 rounded-lg bg-[#0A0A0E]/85 backdrop-blur-md border border-white/10 text-xs text-[#D6CDBD]">
+                      <Calendar className="w-3.5 h-3.5 text-[#8E54DF]" />
+                      <span>{event.date || "Upcoming"}</span>
+                    </div>
+                  </div>
 
-//   ইভেন্ট ডিলিট করার ফাংশন (ঐচ্ছিক কিন্তু ম্যানেজ পেজের জন্য জরুরি)
-//   const handleDelete = async (id: string) => {
-//     ডিলিট API কল করার লজিক এখানে হবে
-//     setEvents(events.filter(event => event._id !== id));
-//   };
+                  {/* Card Body Details */}
+                  <div className="p-6">
+                    <h3 className="text-xl font-bold text-white mb-2 tracking-wide group-hover:text-[#F08C2E] transition-colors truncate">
+                      {event.title}
+                    </h3>
 
-//   if (loading) return <p className="text-center mt-10">Loading your events...</p>;
+                    {/* Location */}
+                    <div className="flex items-center gap-2 text-sm text-[#D6CDBD] mb-3">
+                      <MapPin className="w-4 h-4 text-[#8E54DF] flex-shrink-0" />
+                      <span className="truncate">{event.location}</span>
+                    </div>
 
-//   return (
-//     <div className="max-w-6xl mx-auto p-6">
-//       <h1 className="text-3xl font-bold mb-6">Manage My Events</h1>
+                    {/* Description Snippet */}
+                    <p className="text-gray-400 text-sm line-clamp-2 mb-4 leading-relaxed">
+                      {event.description}
+                    </p>
+                  </div>
+                </div>
 
-//       {events.length === 0 ? (
-//         <p className="text-gray-500">You haven't created any events yet.</p>
-//       ) : (
-//         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-//           {events.map((event) => (
-//             <Card key={event._id} className="shadow-md">
-//               <CardHeader>
-//                 <CardTitle className="text-xl">{event.title}</CardTitle>
-//               </CardHeader>
-//               <CardContent>
-//                 <p className="text-gray-600 text-sm mb-2">{event.description}</p>
-//                 <p className="text-xs text-gray-400 mb-1">📅 Date: {event.date}</p>
-//                 <p className="text-xs text-gray-400 mb-4">📍 Location: {event.location}</p>
-                
-//                 {/* Shadcn UI এবং Lucide Icons ব্যবহার করে Edit ও Delete বাটন */}
-//                 <div className="flex justify-end gap-2">
-//                   <Button variant="outline" size="sm">
-//                     <Edit className="w-4 h-4 mr-1" /> Edit
-//                   </Button>
-//                   <Button variant="destructive" size="sm" onClick={() => handleDelete(event._id)}>
-//                     <Trash2 className="w-4 h-4 mr-1" /> Delete
-//                   </Button>
-//                 </div>
-//               </CardContent>
-//             </Card>
-//           ))}
-//         </div>
-//       )}
-//     </div>
-//   );
-// }
+                {/* Card Footer: Organizer Info & Action Buttons (View, Edit, Delete) */}
+                <div className="px-6 pb-6 pt-0 flex flex-col gap-4">
+                  
+                  {/* Organizer Name/Email */}
+                  <div className="flex items-center gap-2 text-xs text-[#D6CDBD] pt-3 border-t border-white/10">
+                    <User className="w-3.5 h-3.5 text-[#F08C2E]" />
+                    <span className="truncate">{user?.name || event.organizerEmail || "Organizer"}</span>
+                  </div>
 
+                  {/* Action Buttons Row */}
+                  <div className="grid grid-cols-3 gap-2">
+                    {/* View Button */}
+                    <Link
+                      href={`/events/${event._id}`}
+                      className="py-2.5 px-2 rounded-xl font-semibold text-white bg-white/5 border border-white/10 hover:bg-white/10 transition duration-200 flex items-center justify-center gap-1.5 text-xs text-center"
+                    >
+                      <Eye className="w-3.5 h-3.5 text-[#D6CDBD]" />
+                      <span>View</span>
+                    </Link>
 
-// import { auth } from "@/lib/auth";
-// import { headers } from "next/headers";
+                    {/* Edit Button */}
+                    <Link
+                      href={`/events/edit/${event._id}`}
+                      className="py-2.5 px-2 rounded-xl font-semibold text-white bg-[#8E54DF]/20 border border-[#8E54DF]/40 hover:bg-[#8E54DF]/30 transition duration-200 flex items-center justify-center gap-1.5 text-xs text-center"
+                    >
+                      <Edit3 className="w-3.5 h-3.5 text-[#8E54DF]" />
+                      <span>Edit</span>
+                    </Link>
 
-// const ManageEventPage = async() => {
-//   const session = auth.api.getSession({
-//     headers: await headers()
-//   })
-//   const user = session?.user
-  
-//   const res = await fetch(`http://localhost:5000/my-events/${user?.email}`)
-//   const createEvent = await res.json()
+                    {/* Delete Button */}
+                    <button
+                      type="button"
+                      className="py-2.5 px-2 rounded-xl font-semibold text-red-400 bg-red-500/10 border border-red-500/30 hover:bg-red-500/20 transition duration-200 flex items-center justify-center gap-1.5 text-xs text-center cursor-pointer"
+                    >
+                      <Trash2 className="w-3.5 h-3.5 text-red-400" />
+                      <span>Delete</span>
+                    </button>
+                  </div>
 
-//   console.log('createEvent', createEvent)
+                </div>
 
-//   return (
-//     <div>
-//       ManageEventPage
-//     </div>
-//   );
-// };
+              </div>
+            ))}
+          </div>
+        ) : (
+          // ==================== 4. EMPTY STATE SECTION ====================
+          <div className="text-center py-20 bg-[#121218]/50 backdrop-blur-xl border border-white/10 rounded-3xl p-8 max-w-xl mx-auto">
+            <div className="w-16 h-16 rounded-2xl bg-[#F08C2E]/10 border border-[#F08C2E]/30 flex items-center justify-center mx-auto mb-4 text-[#F08C2E]">
+              <ShieldAlert className="w-8 h-8" />
+            </div>
+            <h3 className="text-xl font-bold text-white mb-2">No Events Created Yet</h3>
+            <p className="text-[#D6CDBD] text-sm mb-6">
+              You haven&apos;t published any community initiatives or drives yet. Start organizing to make an impact!
+            </p>
+            <Link
+              href="/create-event"
+              className="inline-flex items-center gap-2 bg-[#F08C2E] text-black font-bold px-6 py-3 rounded-xl hover:opacity-90 transition duration-300 text-sm shadow-lg shadow-[#F08C2E]/20"
+            >
+              <PlusCircle className="w-4 h-4" />
+              <span>Create Your First Event</span>
+            </Link>
+          </div>
+        )}
 
-// export default ManageEventPage;
+      </div>
+    </div>
+  );
+};
+
+export default ManageEventPage;
