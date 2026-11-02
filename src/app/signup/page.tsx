@@ -340,7 +340,7 @@ export default function SignUpPage() {
                   href="/signin"
                   className="text-[#F08C2F] font-semibold hover:underline"
                 >
-                  Login here
+                  Sign In
                 </a>
 
               </FieldDescription>
