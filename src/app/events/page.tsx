@@ -46,10 +46,10 @@ const AllEventsPage = async () => {
           </div>
 
           <Link
-            href="/events"
+            href="/create-event"
             className="inline-flex items-center gap-1.5 text-sm font-medium text-[#F08C2E] hover:text-[#8E54DF] transition-colors mt-4 md:mt-0"
           >
-            <span>View All Events</span>
+            <span>Create Event</span>
             <ArrowRight className="w-4 h-4" />
           </Link>
         </div>

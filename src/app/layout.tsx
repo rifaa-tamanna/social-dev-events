@@ -4,6 +4,8 @@ import "./globals.css";
 import { cn } from "@/lib/utils";
 import Navbar from "@/components/home/Navbar";
 import Footer from "@/components/home/Footer";
+import { ToastContainer } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
 const geist = Geist({subsets:['latin'],variable:'--font-sans'});
 
