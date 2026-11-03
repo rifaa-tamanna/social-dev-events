@@ -11,6 +11,7 @@ import {
 import JoinedEventCard from "@/components/joining/JoinedEventCard";
 import { auth } from "@/lib/auth";
 import { headers } from "next/headers";
+import { getTokenFromServer } from "@/lib/getTokenFromServer";
 
 interface EventData {
   _id: string;
@@ -32,13 +33,7 @@ const EventDetailsPage = async ({
 }) => {
   const { id } = await params;
 
-  const jwtToken = await auth.api.getToken({
-    headers: await headers()
-  })
-
-  const token = jwtToken?.token
-  console.log('token', token)
-
+  const token = await getTokenFromServer()  // getTokenFromServer
 
   const res = await fetch(`http://localhost:5000/events/${id}`, {
     headers: {

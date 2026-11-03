@@ -107,7 +107,7 @@ const JoinedEventPage = () => {
 
     try {
       setLeavingId(event.eventId);
-
+      
       const res = await fetch("http://localhost:5000/joining", {
         method: "DELETE",
         headers: {
@@ -119,10 +119,10 @@ const JoinedEventPage = () => {
         }),
       });
 
-      const data: ApiResponse = await res.json();
+      const resultData: ApiResponse = await res.json();
 
-      if (!res.ok || !data.success) {
-        throw new Error(data.message || "Failed to leave event");
+      if (!res.ok || !resultData.success) {
+        throw new Error(resultData.message || "Failed to leave event");
       }
 
       setEvents((prev) =>
