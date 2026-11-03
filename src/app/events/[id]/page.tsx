@@ -32,6 +32,9 @@ const EventDetailsPage = async ({
 
   const res = await fetch(`http://localhost:5000/events/${id}`, {
     cache: "no-store",
+    headers: {
+      authorization: 'user logged in'
+    },
   });
   const data: EventData = await res.json();
 
