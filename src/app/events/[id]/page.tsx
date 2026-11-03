@@ -9,6 +9,8 @@ import {
   Sparkles,
 } from "lucide-react";
 import JoinedEventCard from "@/components/joining/JoinedEventCard";
+import { auth } from "@/lib/auth";
+import { headers } from "next/headers";
 
 interface EventData {
   _id: string;
@@ -30,10 +32,17 @@ const EventDetailsPage = async ({
 }) => {
   const { id } = await params;
 
+  const jwtToken = await auth.api.getToken({
+    headers: await headers()
+  })
+
+  const token = jwtToken?.token
+  console.log('token', token)
+
+
   const res = await fetch(`http://localhost:5000/events/${id}`, {
-    cache: "no-store",
     headers: {
-      authorization: 'user logged in'
+      authorization: `Bearer ${token}`,
     },
   });
   const data: EventData = await res.json();
