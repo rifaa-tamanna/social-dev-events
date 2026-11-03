@@ -11,7 +11,7 @@ import {
 import JoinedEventCard from "@/components/joining/JoinedEventCard";
 
 interface EventData {
-  _id?: string;
+  _id: string;
   title: string;
   type: string;
   date: string;
@@ -178,3 +178,5 @@ const EventDetailsPage = async ({
 };
 
 export default EventDetailsPage;
+
+

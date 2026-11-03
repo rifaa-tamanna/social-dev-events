@@ -2,17 +2,16 @@ import { auth } from "@/lib/auth";
 import { headers } from "next/headers";
 import Image from "next/image";
 import Link from "next/link";
-import { 
-  Calendar, 
-  MapPin, 
-  User, 
-  PlusCircle, 
-  Eye, 
-  Edit3, 
-  Trash2, 
-  Sparkles, 
-  ShieldAlert 
+import {
+  Calendar,
+  MapPin,
+  User,
+  PlusCircle,
+  Eye,
+  Sparkles,
+  ShieldAlert,
 } from "lucide-react";
+import EditDeleteButton from "@/components/edit-delete-button/EditDeleteButton";
 
 interface EventItem {
   _id: string;
@@ -22,10 +21,9 @@ interface EventItem {
   location: string;
   thumbnail: string;
   description: string;
-  organizerEmail?: string;
+  organizerEmail: string;
 }
 
-// Always render this page per request so a freshly published event
 // shows up immediately instead of being served from a prerendered page.
 export const dynamic = "force-dynamic";
 
@@ -55,13 +53,11 @@ const ManageEventPage = async () => {
 
   return (
     <div className="min-h-screen bg-[#0A0A0E] text-white py-12 px-6 md:px-12 font-['Space_Grotesk'] relative overflow-hidden">
-      
       {/* Background Ambient Glow Effects */}
       <div className="absolute top-20 left-10 w-96 h-96 bg-[#F08C2E]/10 rounded-full blur-[140px] pointer-events-none" />
       <div className="absolute bottom-10 right-10 w-96 h-96 bg-[#8E54DF]/15 rounded-full blur-[140px] pointer-events-none" />
 
       <div className="max-w-7xl mx-auto relative z-10">
-        
         {/* ==================== 2. HEADER SECTION ==================== */}
         <div className="flex flex-col md:flex-row md:items-center justify-between gap-6 mb-12 pb-8 border-b border-white/10">
           <div>
@@ -80,7 +76,8 @@ const ManageEventPage = async () => {
 
             {/* Subtitle Description */}
             <p className="text-[#D6CDBD] text-sm md:text-base max-w-2xl">
-              View, edit, and manage the social drives you have published. Only you have permission to edit or delete your created initiatives.
+              View, edit, and manage the social drives you have published. Only
+              you have permission to edit or delete your created initiatives.
             </p>
           </div>
 
@@ -106,12 +103,15 @@ const ManageEventPage = async () => {
                   {/* Thumbnail Image Container */}
                   <div className="relative w-full h-52 overflow-hidden bg-black/40">
                     <Image
-                      src={event.thumbnail || "https://images.unsplash.com/photo-1531206715517-5c0ba140b2b8"}
+                      src={
+                        event.thumbnail ||
+                        "https://images.unsplash.com/photo-1531206715517-5c0ba140b2b8"
+                      }
                       alt={event.title || "Event Banner"}
                       fill
                       className="object-cover group-hover:scale-105 transition-transform duration-500"
                     />
-                    
+
                     {/* Event Type Badge on Top */}
                     <div className="absolute top-4 left-4 inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-[#0A0A0E]/75 backdrop-blur-md border border-white/15 text-xs font-medium text-[#00a884]">
                       <span className="w-2 h-2 rounded-full bg-[#00a884] animate-pulse" />
@@ -146,13 +146,15 @@ const ManageEventPage = async () => {
 
                 {/* Card Footer: Organizer Info & Action Buttons (View, Edit, Delete) */}
                 <div className="px-6 pb-6 pt-0 flex flex-col gap-4">
-                  
                   {/* Organizer Name/Email */}
                   <div className="flex items-center gap-2 text-xs text-[#D6CDBD] pt-3 border-t border-white/10">
                     <User className="w-3.5 h-3.5 text-[#F08C2E]" />
-                    <span className="truncate">{user?.name || event.organizerEmail || "Organizer"}</span>
+                    <span className="truncate">
+                      {user?.name || event.organizerEmail || "Organizer"}
+                    </span>
                   </div>
 
+                  {/* Action Buttons Row */}
                   {/* Action Buttons Row */}
                   <div className="grid grid-cols-3 gap-2">
                     {/* View Button */}
@@ -164,27 +166,12 @@ const ManageEventPage = async () => {
                       <span>View</span>
                     </Link>
 
-                    {/* Edit Button */}
-                    <Link
-                      href={`/events/edit/${event._id}`}
-                      className="py-2.5 px-2 rounded-xl font-semibold text-white bg-[#8E54DF]/20 border border-[#8E54DF]/40 hover:bg-[#8E54DF]/30 transition duration-200 flex items-center justify-center gap-1.5 text-xs text-center"
-                    >
-                      <Edit3 className="w-3.5 h-3.5 text-[#8E54DF]" />
-                      <span>Edit</span>
-                    </Link>
-
-                    {/* Delete Button */}
-                    <button
-                      type="button"
-                      className="py-2.5 px-2 rounded-xl font-semibold text-red-400 bg-red-500/10 border border-red-500/30 hover:bg-red-500/20 transition duration-200 flex items-center justify-center gap-1.5 text-xs text-center cursor-pointer"
-                    >
-                      <Trash2 className="w-3.5 h-3.5 text-red-400" />
-                      <span>Delete</span>
-                    </button>
+                    {/* Edit & Delete Buttons */}
+                    <div className="col-span-2">
+                      <EditDeleteButton event={event} />
+                    </div>
                   </div>
-
                 </div>
-
               </div>
             ))}
           </div>
@@ -194,9 +181,12 @@ const ManageEventPage = async () => {
             <div className="w-16 h-16 rounded-2xl bg-[#F08C2E]/10 border border-[#F08C2E]/30 flex items-center justify-center mx-auto mb-4 text-[#F08C2E]">
               <ShieldAlert className="w-8 h-8" />
             </div>
-            <h3 className="text-xl font-bold text-white mb-2">No Events Created Yet</h3>
+            <h3 className="text-xl font-bold text-white mb-2">
+              No Events Created Yet
+            </h3>
             <p className="text-[#D6CDBD] text-sm mb-6">
-              You haven&apos;t published any community initiatives or drives yet. Start organizing to make an impact!
+              You haven&apos;t published any community initiatives or drives
+              yet. Start organizing to make an impact!
             </p>
             <Link
               href="/create-event"
@@ -207,7 +197,6 @@ const ManageEventPage = async () => {
             </Link>
           </div>
         )}
-
       </div>
     </div>
   );
