@@ -3,7 +3,7 @@
 
 import { useState } from "react";
 import { useRouter } from "next/navigation";
-import { authClient } from "@/lib/auth-client";
+import { authClient, signIn } from "@/lib/auth-client";
 
 import {
   Card,
@@ -34,6 +34,7 @@ import {
   X,
   ArrowRight,
 } from "lucide-react";
+import Link from "next/link";
 
 export default function SignUpPage() {
   const router = useRouter();
@@ -83,6 +84,12 @@ export default function SignUpPage() {
       router.push("/");
     }
   };
+
+  const handleGoogleSignUp = async() => {
+    const googleAuth = await signIn.social({
+      provider: 'google'
+    })
+  }
 
   return (
     <div className="min-h-screen bg-[#0A0A0E] text-white flex items-center justify-center px-4 py-8 font-['Space_Grotesk'] relative overflow-hidden">
@@ -316,10 +323,19 @@ export default function SignUpPage() {
 
                   <Button
                     type="submit"
-                    disabled={!isPasswordValid}
                     className="w-full h-12 rounded-xl font-bold text-black bg-gradient-to-r from-[#F08C2F] to-[#8E54DF] hover:opacity-90 transition-all duration-300 shadow-md shadow-[#F08C2F]/20 text-sm cursor-pointer disabled:opacity-50 disabled:cursor-not-allowed"
                   >
                     Register
+
+                    <ArrowRight className="w-4 h-4 ml-2" />
+                  </Button>
+                  <p className="text-center py-[10px]">OR</p>
+                  <Button 
+                    onClick={handleGoogleSignUp}
+                    type="submit"
+                    className="w-full h-12 rounded-xl font-bold text-black bg-[#F08C2F] hover:text-white transition-all duration-300 shadow-md shadow-[#F08C2F]/20 text-sm cursor-pointer disabled:opacity-50 disabled:cursor-not-allowed"
+                  >
+                    Sign Up with Google
 
                     <ArrowRight className="w-4 h-4 ml-2" />
                   </Button>
@@ -336,12 +352,12 @@ export default function SignUpPage() {
               <FieldDescription className="text-sm text-[#D6CDBD]">
                 Already have an account?{" "}
 
-                <a
+                <Link
                   href="/signin"
                   className="text-[#F08C2F] font-semibold hover:underline"
                 >
                   Sign In
-                </a>
+                </Link>
 
               </FieldDescription>
 

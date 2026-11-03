@@ -3,11 +3,9 @@
 import { useEffect, useState } from "react";
 import { useRouter } from "next/navigation";
 import { Edit3, Trash2, X, AlertTriangle } from "lucide-react";
-
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
-
 import {
   Dialog,
   DialogContent,
@@ -76,6 +74,7 @@ const EditDeleteButton = ({ event }: Props) => {
   // Edit Event
   const handleEdit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
+
     setLoading(true);
 
     try {
@@ -150,8 +149,7 @@ const EditDeleteButton = ({ event }: Props) => {
   };
 
   return (
-    <div className="grid grid-cols-2 gap-1.5 w-full">
-
+    <div className="grid grid-cols-2 gap-1.5 w-full font-['Space_Grotesk']">
       {/* ================= EDIT BUTTON & DIALOG ================= */}
 
       <Dialog open={editOpen} onOpenChange={setEditOpen}>
@@ -165,8 +163,7 @@ const EditDeleteButton = ({ event }: Props) => {
           </Button>
         </DialogTrigger>
 
-        <DialogContent className="bg-[#111116] border border-white/10 text-white rounded-2xl max-h-[85vh] overflow-y-auto sm:max-w-lg p-6 shadow-2xl">
-
+        <DialogContent className="bg-[#111116] border border-white/10 text-white rounded-2xl max-h-[85vh] overflow-y-auto sm:max-w-lg p-6 shadow-2xl font-['Space_Grotesk']">
           <DialogHeader className="space-y-2 border-b border-white/10 pb-5">
             <div className="w-11 h-11 rounded-xl bg-[#884AE9]/15 border border-[#884AE9]/30 flex items-center justify-center">
               <Edit3 className="w-5 h-5 text-[#B78BFF]" />
@@ -182,11 +179,11 @@ const EditDeleteButton = ({ event }: Props) => {
           </DialogHeader>
 
           <form onSubmit={handleEdit} className="space-y-4 pt-2">
-
             <div className="space-y-1.5">
               <label className="text-sm font-medium text-gray-300">
                 Event Title
               </label>
+
               <Input
                 name="title"
                 value={formData.title}
@@ -198,11 +195,11 @@ const EditDeleteButton = ({ event }: Props) => {
             </div>
 
             <div className="grid grid-cols-2 gap-3">
-
               <div className="space-y-1.5">
                 <label className="text-sm font-medium text-gray-300">
                   Event Type
                 </label>
+
                 <Input
                   name="type"
                   value={formData.type}
@@ -217,6 +214,7 @@ const EditDeleteButton = ({ event }: Props) => {
                 <label className="text-sm font-medium text-gray-300">
                   Event Date
                 </label>
+
                 <Input
                   type="date"
                   name="date"
@@ -226,13 +224,13 @@ const EditDeleteButton = ({ event }: Props) => {
                   className="h-11 bg-[#1B1B24] border-white/10 text-white focus-visible:ring-[#884AE9] [color-scheme:dark]"
                 />
               </div>
-
             </div>
 
             <div className="space-y-1.5">
               <label className="text-sm font-medium text-gray-300">
                 Location
               </label>
+
               <Input
                 name="location"
                 value={formData.location}
@@ -247,6 +245,7 @@ const EditDeleteButton = ({ event }: Props) => {
               <label className="text-sm font-medium text-gray-300">
                 Thumbnail URL
               </label>
+
               <Input
                 name="thumbnail"
                 value={formData.thumbnail}
@@ -261,6 +260,7 @@ const EditDeleteButton = ({ event }: Props) => {
               <label className="text-sm font-medium text-gray-300">
                 Description
               </label>
+
               <Textarea
                 name="description"
                 value={formData.description}
@@ -273,7 +273,6 @@ const EditDeleteButton = ({ event }: Props) => {
             </div>
 
             <div className="flex gap-2 pt-3 border-t border-white/10">
-
               <Button
                 type="button"
                 variant="outline"
@@ -291,9 +290,7 @@ const EditDeleteButton = ({ event }: Props) => {
               >
                 {loading ? "Updating..." : "Save Changes"}
               </Button>
-
             </div>
-
           </form>
         </DialogContent>
       </Dialog>
@@ -311,10 +308,8 @@ const EditDeleteButton = ({ event }: Props) => {
           </Button>
         </DialogTrigger>
 
-        <DialogContent className="bg-[#111116] border border-white/10 text-white rounded-2xl sm:max-w-md p-6 shadow-2xl">
-
+        <DialogContent className="bg-[#111116] border border-white/10 text-white rounded-2xl sm:max-w-md p-6 shadow-2xl font-['Space_Grotesk']">
           <DialogHeader className="items-center text-center space-y-3">
-
             <div className="w-16 h-16 rounded-2xl bg-red-500/10 border border-red-500/20 flex items-center justify-center">
               <AlertTriangle className="w-8 h-8 text-red-400" />
             </div>
@@ -330,7 +325,6 @@ const EditDeleteButton = ({ event }: Props) => {
               </span>
               ? This action cannot be undone.
             </DialogDescription>
-
           </DialogHeader>
 
           <div className="mt-4 p-3 rounded-xl bg-red-500/5 border border-red-500/15">
@@ -341,7 +335,6 @@ const EditDeleteButton = ({ event }: Props) => {
           </div>
 
           <DialogFooter className="grid grid-cols-2 gap-2 mt-4">
-
             <Button
               type="button"
               variant="outline"
@@ -362,12 +355,9 @@ const EditDeleteButton = ({ event }: Props) => {
               <Trash2 className="w-4 h-4 mr-1" />
               {loading ? "Deleting..." : "Yes, Delete"}
             </Button>
-
           </DialogFooter>
-
         </DialogContent>
       </Dialog>
-
     </div>
   );
 };
