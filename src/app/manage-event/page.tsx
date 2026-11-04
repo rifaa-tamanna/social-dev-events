@@ -39,7 +39,7 @@ const ManageEventPage = async () => {
   try {
     if (user?.email) {
       const res = await fetch(
-        `http://localhost:5000/my-events/${encodeURIComponent(user.email)}`,
+        `${process.env.NEXT_PUBLIC_API_URL}/my-events/${encodeURIComponent(user.email)}`,
         {
           cache: "no-store",
         },

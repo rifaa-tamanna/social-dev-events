@@ -17,8 +17,8 @@ const UpcomingEvents = async () => {
   let events: Event[] = [];
 
   try {
-    const res = await fetch("http://localhost:5000/recent-upcoming-events", {
-      cache: "no-store",
+    const res = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/recent-upcoming-events`, {
+      next: {revalidate: 60},
     });
 
     if (!res.ok) {

@@ -19,7 +19,7 @@ const AllEventsPage = async () => {
   let events: Event[] = [];
 
   try {
-    const res = await fetch("http://localhost:5000/events", {
+    const res = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/events`, {
       cache: "no-store",
     });
 

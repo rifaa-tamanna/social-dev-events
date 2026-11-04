@@ -66,7 +66,7 @@ const JoinedEventPage = () => {
         setLoading(true);
 
         const res = await fetch(
-          `http://localhost:5000/my-joined-events/${encodeURIComponent(user.email)}`,
+          `${process.env.NEXT_PUBLIC_API_URL}/my-joined-events/${encodeURIComponent(user.email)}`,
         );
 
         const data: JoinedEventsResponse = await res.json();

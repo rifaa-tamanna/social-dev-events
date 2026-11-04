@@ -79,7 +79,7 @@ const EditDeleteButton = ({ event }: Props) => {
 
     try {
       const res = await fetch(
-        `http://localhost:5000/events/${event._id}`,
+        `${process.env.NEXT_PUBLIC_API_URL}/events/${event._id}`,
         {
           method: "PATCH",
           headers: {
@@ -117,7 +117,7 @@ const EditDeleteButton = ({ event }: Props) => {
 
     try {
       const res = await fetch(
-        `http://localhost:5000/events/${event._id}`,
+        `${process.env.NEXT_PUBLIC_API_URL}/events/${event._id}`,
         {
           method: "DELETE",
           headers: {

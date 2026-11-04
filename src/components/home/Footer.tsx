@@ -85,7 +85,7 @@ const Footer = () => {
               </li>
               <li>
                 <Link
-                  href="/speakers"
+                  href="/manage-event"
                   className="hover:text-white transition-colors"
                 >
                   Manage My Events
@@ -93,7 +93,7 @@ const Footer = () => {
               </li>
               <li>
                 <Link
-                  href="/about"
+                  href="/joined-event"
                   className="hover:text-white transition-colors"
                 >
                   My Joined Events
@@ -109,22 +109,22 @@ const Footer = () => {
             </h4>
             <ul className="flex flex-col gap-2.5 text-sm text-[#D6CDBD]">
               <li>
-                <Link href="#" className="hover:text-white transition-colors">
+                <Link href="" className="hover:text-white transition-colors">
                   Winter Relief Drives
                 </Link>
               </li>
               <li>
-                <Link href="#" className="hover:text-white transition-colors">
+                <Link href="" className="hover:text-white transition-colors">
                   Food Distribution
                 </Link>
               </li>
               <li>
-                <Link href="#" className="hover:text-white transition-colors">
+                <Link href="" className="hover:text-white transition-colors">
                   Community Cleanups
                 </Link>
               </li>
               <li>
-                <Link href="#" className="hover:text-white transition-colors">
+                <Link href="" className="hover:text-white transition-colors">
                   Youth Volunteering
                 </Link>
               </li>
@@ -138,23 +138,23 @@ const Footer = () => {
             </h4>
             <ul className="flex flex-col gap-2.5 text-sm text-[#D6CDBD]">
               <li>
-                <Link href="#" className="hover:text-white transition-colors">
+                <Link href="" className="hover:text-white transition-colors">
                   Help Center
                 </Link>
               </li>
               <li>
-                <Link href="#" className="hover:text-white transition-colors">
+                <Link href="" className="hover:text-white transition-colors">
                   Terms of Service
                 </Link>
               </li>
               <li>
-                <Link href="#" className="hover:text-white transition-colors">
+                <Link href="" className="hover:text-white transition-colors">
                   Privacy Policy
                 </Link>
               </li>
               <li>
                 <Link
-                  href="#"
+                  href=""
                   className="inline-flex items-center gap-1 hover:text-[#F08C2F] transition-colors"
                 >
                   <span>Contact Us</span>

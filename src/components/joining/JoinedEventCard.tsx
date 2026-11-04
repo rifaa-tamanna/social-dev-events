@@ -51,7 +51,7 @@ const JoinedEventCard = ({ data }: JoinedEventCardProps) => {
         ...data,
       };
 
-      const res = await fetch("http://localhost:5000/joining", {
+      const res = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/joining`, {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
@@ -95,7 +95,7 @@ const JoinedEventCard = ({ data }: JoinedEventCardProps) => {
     try {
       setLoading(true);
 
-      const res = await fetch("http://localhost:5000/joining", {
+      const res = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/joining`, {
         method: "DELETE",
         headers: {
           "Content-Type": "application/json",

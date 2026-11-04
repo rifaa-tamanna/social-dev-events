@@ -9,8 +9,6 @@ import {
   Sparkles,
 } from "lucide-react";
 import JoinedEventCard from "@/components/joining/JoinedEventCard";
-import { auth } from "@/lib/auth";
-import { headers } from "next/headers";
 import { getTokenFromServer } from "@/lib/getTokenFromServer";
 
 interface EventData {
@@ -32,14 +30,8 @@ const EventDetailsPage = async ({
   params: Promise<{ id: string }>;
 }) => {
   const { id } = await params;
-
-  const token = await getTokenFromServer()  // getTokenFromServer
-
-  const res = await fetch(`http://localhost:5000/events/${id}`, {
-    headers: {
-      authorization: `Bearer ${token}`,
-    },
-  });
+  
+  const res = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/events/${id}`);
   const data: EventData = await res.json();
 
   return (
