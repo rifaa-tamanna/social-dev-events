@@ -8,17 +8,13 @@ import { useTheme } from "next-themes";
 
 import { authClient } from "@/lib/auth-client";
 
-import {
-  Avatar,
-  AvatarFallback,
-  AvatarImage,
-} from "@/components/ui/avatar";
+import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 
 import {
   Popover,
   PopoverContent,
-  PopoverDescription,
   PopoverHeader,
+  PopoverDescription,
   PopoverTitle,
   PopoverTrigger,
 } from "@/components/ui/popover";
@@ -35,6 +31,8 @@ import {
   ChevronUp,
   Sun,
   Moon,
+  Info,
+  Mail,
 } from "lucide-react";
 
 // Theme Toggle Component
@@ -120,7 +118,7 @@ const Navbar = () => {
       <div className="flex items-center gap-3">
         <Popover open={profileOpen} onOpenChange={setProfileOpen}>
           <PopoverTrigger
-            render={ 
+            render={
               <button
                 type="button"
                 aria-label="Toggle profile menu"
@@ -211,7 +209,6 @@ const Navbar = () => {
   return (
     <nav className="sticky top-0 z-50 bg-background text-foreground border-b border-border px-4 md:px-8 py-4 transition-colors duration-300">
       <div className="max-w-7xl mx-auto flex items-center justify-between">
-
         {/* Left Side: Logo */}
         <Link href="/">
           <Image
@@ -222,21 +219,35 @@ const Navbar = () => {
           />
         </Link>
 
-        {/* Middle: Upcoming Events */}
-        <div className="hidden md:flex items-center gap-2 font-heading text-muted-foreground">
-          <CalendarDays className="w-5 h-5" />
-
+        {/* Middle: Public Navigation Links */}
+        <div className="hidden md:flex items-center gap-6 font-heading text-muted-foreground">
           <Link
             href="/events"
-            className="hover:text-brand transition"
+            className="flex items-center gap-2 hover:text-brand transition"
           >
+            <CalendarDays className="w-5 h-5" />
             Upcoming Events
+          </Link>
+
+          <Link
+            href="/about"
+            className="flex items-center gap-2 hover:text-brand transition"
+          >
+            <Info className="w-5 h-5" />
+            About Us
+          </Link>
+
+          <Link
+            href="/contact"
+            className="flex items-center gap-2 hover:text-brand transition"
+          >
+            <Mail className="w-5 h-5" />
+            Contact Us
           </Link>
         </div>
 
         {/* Right Side: Auth + Theme */}
         <div className="hidden md:flex items-center gap-3">
-
           <ThemeToggle />
 
           {user ? (
@@ -262,7 +273,6 @@ const Navbar = () => {
 
         {/* Mobile Theme + Menu Button */}
         <div className="md:hidden flex items-center gap-3">
-
           <ThemeToggle />
 
           <button
@@ -272,11 +282,7 @@ const Navbar = () => {
             aria-label="Toggle Menu"
             aria-expanded={isOpen}
           >
-            {isOpen ? (
-              <X className="w-6 h-6" />
-            ) : (
-              <Menu className="w-6 h-6" />
-            )}
+            {isOpen ? <X className="w-6 h-6" /> : <Menu className="w-6 h-6" />}
           </button>
         </div>
       </div>
@@ -284,8 +290,7 @@ const Navbar = () => {
       {/* Mobile Dropdown Menu */}
       {isOpen && (
         <div className="md:hidden flex flex-col gap-4 mt-4 pt-4 border-t border-border">
-
-          {/* Upcoming Events */}
+          {/* Public Navigation Links */}
           <Link
             href="/events"
             onClick={handleMenuClose}
@@ -295,15 +300,30 @@ const Navbar = () => {
             Upcoming Events
           </Link>
 
+          <Link
+            href="/about"
+            onClick={handleMenuClose}
+            className="flex items-center justify-center gap-2 font-heading text-foreground hover:text-brand transition"
+          >
+            <Info className="w-5 h-5" />
+            About Us
+          </Link>
+
+          <Link
+            href="/contact"
+            onClick={handleMenuClose}
+            className="flex items-center justify-center gap-2 font-heading text-foreground hover:text-brand transition"
+          >
+            <Mail className="w-5 h-5" />
+            Contact Us
+          </Link>
+
           {user ? (
             <div className="px-2">
-
               {/* Mobile User Profile */}
               <button
                 type="button"
-                onClick={() =>
-                  setMobileProfileOpen(!mobileProfileOpen)
-                }
+                onClick={() => setMobileProfileOpen(!mobileProfileOpen)}
                 aria-expanded={mobileProfileOpen}
                 className="w-full flex items-center justify-between p-3 rounded-xl bg-card border border-border"
               >
@@ -340,7 +360,6 @@ const Navbar = () => {
               {/* Mobile Profile Links */}
               {mobileProfileOpen && (
                 <div className="mt-2 space-y-1">
-
                   <Link
                     href="/create-event"
                     onClick={handleMenuClose}
@@ -382,7 +401,6 @@ const Navbar = () => {
             </div>
           ) : (
             <div className="flex flex-col w-full gap-2 px-4">
-
               <Link
                 href="/signin"
                 onClick={handleMenuClose}
