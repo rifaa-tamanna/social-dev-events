@@ -52,30 +52,30 @@ const ManageEventPage = async () => {
   }
 
   return (
-    <div className="min-h-screen bg-[#0A0A0E] text-white py-12 px-6 md:px-12 font-['Space_Grotesk'] relative overflow-hidden">
+    <div className="min-h-screen bg-background text-foreground py-12 px-6 md:px-12 relative overflow-hidden">
       {/* Background Ambient Glow Effects */}
-      <div className="absolute top-20 left-10 w-96 h-96 bg-[#F08C2E]/10 rounded-full blur-[140px] pointer-events-none" />
-      <div className="absolute bottom-10 right-10 w-96 h-96 bg-[#8E54DF]/15 rounded-full blur-[140px] pointer-events-none" />
+      <div className="absolute top-20 left-10 w-96 h-96 bg-brand/10 rounded-full blur-[140px] pointer-events-none" />
+      <div className="absolute bottom-10 right-10 w-96 h-96 bg-brand-2/15 rounded-full blur-[140px] pointer-events-none" />
 
       <div className="max-w-7xl mx-auto relative z-10">
         {/* ==================== 2. HEADER SECTION ==================== */}
-        <div className="flex flex-col md:flex-row md:items-center justify-between gap-6 mb-12 pb-8 border-b border-white/10">
+        <div className="flex flex-col md:flex-row md:items-center justify-between gap-6 mb-12 pb-8 border-b border-border">
           <div>
             {/* Dashboard Badge */}
-            <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-white/5 border border-white/10 text-xs md:text-sm font-medium tracking-wide mb-4 backdrop-blur-md">
-              <Sparkles className="w-4 h-4 text-[#F08C2E]" />
-              <span className="uppercase text-[#D6CDBD] tracking-widest font-semibold">
+            <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-subtle border border-border text-xs md:text-sm font-medium tracking-wide mb-4 backdrop-blur-md">
+              <Sparkles className="w-4 h-4 text-brand" />
+              <span className="uppercase text-muted-foreground tracking-widest font-semibold">
                 Organizer Dashboard
               </span>
             </div>
 
             {/* Page Title */}
-            <h1 className="text-3xl sm:text-4xl lg:text-5xl font-bold tracking-tight text-white mb-2">
+            <h1 className="text-3xl sm:text-4xl lg:text-5xl font-bold tracking-tight text-foreground mb-2">
               Manage My Events
             </h1>
 
             {/* Subtitle Description */}
-            <p className="text-[#D6CDBD] text-sm md:text-base max-w-2xl">
+            <p className="text-muted-foreground text-sm md:text-base max-w-2xl">
               View, edit, and manage the social drives you have published. Only
               you have permission to edit or delete your created initiatives.
             </p>
@@ -84,7 +84,7 @@ const ManageEventPage = async () => {
           {/* Create New Event Button */}
           <Link
             href="/create-event"
-            className="inline-flex items-center gap-2 bg-gradient-to-r from-[#F08C2F] to-[#884AE9] text-white font-bold px-6 py-3.5 rounded-xl hover:opacity-90 transition duration-300 shadow-lg shadow-[#00a884]/20 text-sm sm:text-base flex-shrink-0 w-fit"
+            className="inline-flex items-center gap-2 bg-gradient-to-r from-brand to-brand-2 text-white font-bold px-6 py-3.5 rounded-xl hover:opacity-90 transition duration-300 shadow-lg shadow-success/20 text-sm sm:text-base flex-shrink-0 w-fit"
           >
             <PlusCircle className="w-5 h-5" />
             <span>Create New Event</span>
@@ -97,11 +97,11 @@ const ManageEventPage = async () => {
             {createEvent.map((event) => (
               <div
                 key={event._id}
-                className="bg-[#121218]/90 backdrop-blur-xl border border-white/10 rounded-3xl overflow-hidden shadow-2xl flex flex-col justify-between group hover:border-[#F08C2E]/40 transition-all duration-300"
+                className="bg-card/90 backdrop-blur-xl border border-border rounded-3xl overflow-hidden shadow-2xl flex flex-col justify-between group hover:border-brand/40 transition-all duration-300"
               >
                 <div>
                   {/* Thumbnail Image Container */}
-                  <div className="relative w-full h-52 overflow-hidden bg-black/40">
+                  <div className="relative w-full h-52 overflow-hidden bg-inset">
                     <Image
                       src={
                         event.thumbnail ||
@@ -113,32 +113,32 @@ const ManageEventPage = async () => {
                     />
 
                     {/* Event Type Badge on Top */}
-                    <div className="absolute top-4 left-4 inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-[#0A0A0E]/75 backdrop-blur-md border border-white/15 text-xs font-medium text-[#00a884]">
-                      <span className="w-2 h-2 rounded-full bg-[#00a884] animate-pulse" />
+                    <div className="absolute top-4 left-4 inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-background/75 backdrop-blur-md border border-border text-xs font-medium text-success">
+                      <span className="w-2 h-2 rounded-full bg-success animate-pulse" />
                       <span>{event.type || "Community Drive"}</span>
                     </div>
 
                     {/* Event Date Badge on Bottom Left */}
-                    <div className="absolute bottom-3 left-4 inline-flex items-center gap-1.5 px-3 py-1 rounded-lg bg-[#0A0A0E]/85 backdrop-blur-md border border-white/10 text-xs text-[#D6CDBD]">
-                      <Calendar className="w-3.5 h-3.5 text-[#8E54DF]" />
+                    <div className="absolute bottom-3 left-4 inline-flex items-center gap-1.5 px-3 py-1.5 rounded-lg bg-background/85 backdrop-blur-md border border-border text-xs text-muted-foreground">
+                      <Calendar className="w-3.5 h-3.5 text-brand-2" />
                       <span>{event.date || "Upcoming"}</span>
                     </div>
                   </div>
 
                   {/* Card Body Details */}
                   <div className="p-6">
-                    <h3 className="text-xl font-bold text-white mb-2 tracking-wide group-hover:text-[#F08C2E] transition-colors truncate">
+                    <h3 className="text-xl font-bold text-foreground mb-2 tracking-wide group-hover:text-brand transition-colors truncate">
                       {event.title}
                     </h3>
 
                     {/* Location */}
-                    <div className="flex items-center gap-2 text-sm text-[#D6CDBD] mb-3">
-                      <MapPin className="w-4 h-4 text-[#8E54DF] flex-shrink-0" />
+                    <div className="flex items-center gap-2 text-sm text-muted-foreground mb-3">
+                      <MapPin className="w-4 h-4 text-brand-2 flex-shrink-0" />
                       <span className="truncate">{event.location}</span>
                     </div>
 
                     {/* Description Snippet */}
-                    <p className="text-gray-400 text-sm line-clamp-2 mb-4 leading-relaxed">
+                    <p className="text-muted-foreground text-sm line-clamp-2 mb-4 leading-relaxed">
                       {event.description}
                     </p>
                   </div>
@@ -147,22 +147,21 @@ const ManageEventPage = async () => {
                 {/* Card Footer: Organizer Info & Action Buttons (View, Edit, Delete) */}
                 <div className="px-6 pb-6 pt-0 flex flex-col gap-4">
                   {/* Organizer Name/Email */}
-                  <div className="flex items-center gap-2 text-xs text-[#D6CDBD] pt-3 border-t border-white/10">
-                    <User className="w-3.5 h-3.5 text-[#F08C2E]" />
+                  <div className="flex items-center gap-2 text-xs text-muted-foreground pt-3 border-t border-border">
+                    <User className="w-3.5 h-3.5 text-brand" />
                     <span className="truncate">
                       {user?.name || event.organizerEmail || "Organizer"}
                     </span>
                   </div>
 
                   {/* Action Buttons Row */}
-                  {/* Action Buttons Row */}
                   <div className="grid grid-cols-3 gap-2">
                     {/* View Button */}
                     <Link
                       href={`/events/${event._id}`}
-                      className="py-2.5 px-2 rounded-xl font-semibold text-white bg-white/5 border border-white/10 hover:bg-white/10 transition duration-200 flex items-center justify-center gap-1.5 text-xs text-center"
+                      className="py-2.5 px-2 rounded-xl font-semibold text-foreground bg-subtle border border-border hover:bg-elevated transition duration-200 flex items-center justify-center gap-1.5 text-xs text-center"
                     >
-                      <Eye className="w-3.5 h-3.5 text-[#D6CDBD]" />
+                      <Eye className="w-3.5 h-3.5 text-muted-foreground" />
                       <span>View</span>
                     </Link>
 
@@ -177,20 +176,20 @@ const ManageEventPage = async () => {
           </div>
         ) : (
           // ==================== 4. EMPTY STATE SECTION ====================
-          <div className="text-center py-20 bg-[#121218]/50 backdrop-blur-xl border border-white/10 rounded-3xl p-8 max-w-xl mx-auto">
-            <div className="w-16 h-16 rounded-2xl bg-[#F08C2E]/10 border border-[#F08C2E]/30 flex items-center justify-center mx-auto mb-4 text-[#F08C2E]">
+          <div className="text-center py-20 bg-card/50 backdrop-blur-xl border border-border rounded-3xl p-8 max-w-xl mx-auto">
+            <div className="w-16 h-16 rounded-2xl bg-brand/10 border border-brand/30 flex items-center justify-center mx-auto mb-4 text-brand">
               <ShieldAlert className="w-8 h-8" />
             </div>
-            <h3 className="text-xl font-bold text-white mb-2">
+            <h3 className="text-xl font-bold text-foreground mb-2">
               No Events Created Yet
             </h3>
-            <p className="text-[#D6CDBD] text-sm mb-6">
+            <p className="text-muted-foreground text-sm mb-6">
               You haven&apos;t published any community initiatives or drives
               yet. Start organizing to make an impact!
             </p>
             <Link
               href="/create-event"
-              className="inline-flex items-center gap-2 bg-[#F08C2E] text-black font-bold px-6 py-3 rounded-xl hover:opacity-90 transition duration-300 text-sm shadow-lg shadow-[#F08C2E]/20"
+              className="inline-flex items-center gap-2 bg-brand text-black font-bold px-6 py-3 rounded-xl hover:opacity-90 transition duration-300 text-sm shadow-lg shadow-brand/20"
             >
               <PlusCircle className="w-4 h-4" />
               <span>Create Your First Event</span>

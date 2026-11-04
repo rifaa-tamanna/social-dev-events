@@ -88,7 +88,7 @@ const EventsFilter = ({ events }: EventsFilterProps) => {
   };
 
   return (
-    <div className="font-['Space_Grotesk']">
+    <div>
 
       {/* Filter and Search Section */}
       <div className="mb-10 flex flex-col lg:flex-row lg:items-center lg:justify-between gap-5">
@@ -102,8 +102,8 @@ const EventsFilter = ({ events }: EventsFilterProps) => {
               onClick={() => setActiveCategory(category)}
               className={`shrink-0 px-5 py-2 rounded-full text-sm font-medium border transition-all duration-300 ${
                 activeCategory === category
-                  ? "bg-[#F08C2F] text-black border-[#F08C2F] shadow-lg shadow-[#F08C2F]/10"
-                  : "bg-white/[0.03] text-[#D6CDBD] border-white/10 hover:border-[#F08C2F]/50 hover:text-[#F08C2F]"
+                  ? "bg-brand text-black border-brand shadow-lg shadow-brand/10"
+                  : "bg-subtle text-muted-foreground border-border hover:border-brand/50 hover:text-brand"
               }`}
             >
               {category}
@@ -113,7 +113,7 @@ const EventsFilter = ({ events }: EventsFilterProps) => {
 
         {/* Search Input */}
         <div className="relative w-full lg:max-w-[320px] shrink-0">
-          <Search className="absolute left-4 top-1/2 -translate-y-1/2 w-4 h-4 text-[#D6CDBD]/60" />
+          <Search className="absolute left-4 top-1/2 -translate-y-1/2 w-4 h-4 text-muted-foreground/60" />
 
           <input
             type="text"
@@ -121,16 +121,16 @@ const EventsFilter = ({ events }: EventsFilterProps) => {
             onChange={(e) => setSearchTerm(e.target.value)}
             placeholder="Search events..."
             aria-label="Search events"
-            className="w-full h-11 pl-11 pr-4 rounded-full bg-[#121218] border border-white/15 text-white text-sm outline-none placeholder:text-[#D6CDBD]/50 focus:border-[#F08C2F] focus:ring-2 focus:ring-[#F08C2F]/10 transition-all"
+            className="w-full h-11 pl-11 pr-4 rounded-full bg-card border border-border text-foreground text-sm outline-none placeholder:text-muted-foreground/50 focus:border-brand focus:ring-2 focus:ring-brand/10 transition-all"
           />
         </div>
       </div>
 
       {/* Results Count */}
       <div className="flex items-center justify-between mb-6">
-        <p className="text-sm text-[#D6CDBD]/70">
+        <p className="text-sm text-muted-foreground/70">
           Showing{" "}
-          <span className="text-[#F08C2F] font-semibold">
+          <span className="text-brand font-semibold">
             {filteredEvents.length}
           </span>{" "}
           of {upcomingEvents.length} upcoming events
@@ -140,7 +140,7 @@ const EventsFilter = ({ events }: EventsFilterProps) => {
           <button
             type="button"
             onClick={resetFilters}
-            className="flex items-center gap-2 text-sm text-[#D6CDBD] hover:text-[#F08C2F] transition-colors"
+            className="flex items-center gap-2 text-sm text-muted-foreground hover:text-brand transition-colors"
           >
             <RotateCcw className="w-3.5 h-3.5" />
             Reset Filters
@@ -155,11 +155,11 @@ const EventsFilter = ({ events }: EventsFilterProps) => {
           filteredEvents.map((event, index) => (
             <div
               key={event._id || `${event.title}-${index}`}
-              className="bg-[#121218]/90 backdrop-blur-xl border border-white/10 rounded-3xl overflow-hidden shadow-2xl flex flex-col justify-between group hover:border-[#F08C2F]/40 transition-all duration-300"
+              className="bg-card/90 backdrop-blur-xl border border-border rounded-3xl overflow-hidden shadow-2xl flex flex-col justify-between group hover:border-brand/40 transition-all duration-300"
             >
               <div>
                 {/* Thumbnail */}
-                <div className="relative w-full h-52 overflow-hidden bg-black/40">
+                <div className="relative w-full h-52 overflow-hidden bg-inset">
                   <Image
                     src={
                       event.thumbnail ||
@@ -171,30 +171,30 @@ const EventsFilter = ({ events }: EventsFilterProps) => {
                   />
 
                   {/* Category Badge */}
-                  <div className="absolute top-4 left-4 inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-[#0A0A0E]/80 backdrop-blur-md border border-white/15 text-xs font-medium text-[#F08C2F]">
+                  <div className="absolute top-4 left-4 inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-background/80 backdrop-blur-md border border-border text-xs font-medium text-brand">
                     <Sparkles className="w-3 h-3" />
                     <span>{event.type || "Community"}</span>
                   </div>
 
                   {/* Date Badge */}
-                  <div className="absolute bottom-3 left-4 inline-flex items-center gap-1.5 px-3 py-1.5 rounded-lg bg-[#0A0A0E]/85 backdrop-blur-md border border-white/10 text-xs text-[#D6CDBD]">
-                    <Calendar className="w-3.5 h-3.5 text-[#8E54DF]" />
+                  <div className="absolute bottom-3 left-4 inline-flex items-center gap-1.5 px-3 py-1.5 rounded-lg bg-background/85 backdrop-blur-md border border-border text-xs text-muted-foreground">
+                    <Calendar className="w-3.5 h-3.5 text-brand-2" />
                     <span>{event.date || "Upcoming"}</span>
                   </div>
                 </div>
 
                 {/* Event Details */}
                 <div className="p-6">
-                  <h3 className="text-xl font-bold text-white mb-3 tracking-wide group-hover:text-[#F08C2F] transition-colors line-clamp-1">
+                  <h3 className="text-xl font-bold text-foreground mb-3 tracking-wide group-hover:text-brand transition-colors line-clamp-1">
                     {event.title}
                   </h3>
 
-                  <div className="flex items-center gap-2 text-sm text-[#D6CDBD] mb-2">
-                    <MapPin className="w-4 h-4 text-[#8E54DF] shrink-0" />
+                  <div className="flex items-center gap-2 text-sm text-muted-foreground mb-2">
+                    <MapPin className="w-4 h-4 text-brand-2 shrink-0" />
                     <span className="truncate">{event.location}</span>
                   </div>
 
-                  <p className="text-gray-400 text-sm line-clamp-2 mb-6">
+                  <p className="text-muted-foreground text-sm line-clamp-2 mb-6">
                     {event.description}
                   </p>
                 </div>
@@ -202,8 +202,8 @@ const EventsFilter = ({ events }: EventsFilterProps) => {
 
               {/* Card Footer */}
               <div className="px-6 pb-6 pt-0 flex flex-col gap-4">
-                <div className="flex items-center gap-2 text-xs text-[#D6CDBD] pt-4 border-t border-white/10">
-                  <User className="w-3.5 h-3.5 text-[#F08C2F]" />
+                <div className="flex items-center gap-2 text-xs text-muted-foreground pt-4 border-t border-border">
+                  <User className="w-3.5 h-3.5 text-brand" />
                   <span className="truncate">
                     {event.organizerEmail || "Community Organizer"}
                   </span>
@@ -211,7 +211,7 @@ const EventsFilter = ({ events }: EventsFilterProps) => {
 
                 <Link
                   href={`/events/${event._id || "#"}`}
-                  className="w-full py-3 rounded-xl font-semibold text-black bg-gradient-to-r from-[#F08C2F] to-[#8E54DF] hover:opacity-90 transition duration-300 shadow-lg shadow-[#F08C2F]/10 flex items-center justify-center gap-2 text-sm text-center"
+                  className="w-full py-3 rounded-xl font-semibold text-black bg-gradient-to-r from-brand to-brand-2 hover:opacity-90 transition duration-300 shadow-lg shadow-brand/10 flex items-center justify-center gap-2 text-sm text-center"
                 >
                   <span>View Event</span>
                   <ArrowRight className="w-4 h-4" />
@@ -221,17 +221,17 @@ const EventsFilter = ({ events }: EventsFilterProps) => {
           ))
         ) : (
           /* Empty State */
-          <div className="col-span-full min-h-[330px] flex flex-col items-center justify-center text-center px-5 py-12 rounded-3xl border border-dashed border-white/10 bg-white/[0.015]">
+          <div className="col-span-full min-h-[330px] flex flex-col items-center justify-center text-center px-5 py-12 rounded-3xl border border-dashed border-border bg-subtle/40">
 
-            <div className="w-14 h-14 rounded-2xl bg-white/[0.04] flex items-center justify-center mb-5">
-              <Filter className="w-6 h-6 text-[#F08C2F]" />
+            <div className="w-14 h-14 rounded-2xl bg-subtle flex items-center justify-center mb-5">
+              <Filter className="w-6 h-6 text-brand" />
             </div>
 
-            <h3 className="text-xl font-bold text-white mb-2">
+            <h3 className="text-xl font-bold text-foreground mb-2">
               No Upcoming Events Found
             </h3>
 
-            <p className="text-sm text-[#D6CDBD]/60 max-w-md mb-7">
+            <p className="text-sm text-muted-foreground/60 max-w-md mb-7">
               There are currently no upcoming events matching your selected
               filter or search term.
             </p>
@@ -240,14 +240,14 @@ const EventsFilter = ({ events }: EventsFilterProps) => {
               <button
                 type="button"
                 onClick={resetFilters}
-                className="px-5 py-2.5 rounded-xl border border-white/15 text-white text-sm hover:bg-white/5 transition-all"
+                className="px-5 py-2.5 rounded-xl border border-border text-foreground text-sm hover:bg-subtle transition-all"
               >
                 Reset Filters
               </button>
 
               <Link
                 href="/create-event"
-                className="px-5 py-2.5 rounded-xl bg-gradient-to-r from-[#F08C2F] to-[#8E54DF] text-black font-semibold text-sm hover:opacity-90 transition-all"
+                className="px-5 py-2.5 rounded-xl bg-gradient-to-r from-brand to-brand-2 text-black font-semibold text-sm hover:opacity-90 transition-all"
               >
                 Create New Event
               </Link>

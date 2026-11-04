@@ -128,17 +128,17 @@ const CreateEventPage = () => {
   };
 
   return (
-    <div className="min-h-screen bg-[#0A0A0E] text-white py-12 px-4 sm:px-6 lg:px-8 font-['Space_Grotesk'] relative overflow-hidden">
+    <div className="min-h-screen bg-background text-foreground py-12 px-4 sm:px-6 lg:px-8 relative overflow-hidden">
       {/* Background Glow Effects */}
-      <div className="absolute top-10 left-1/4 w-96 h-96 bg-[#F08C2F]/10 rounded-full blur-[140px] pointer-events-none" />
-      <div className="absolute bottom-10 right-1/4 w-96 h-96 bg-[#884AE9]/15 rounded-full blur-[140px] pointer-events-none" />
+      <div className="absolute top-10 left-1/4 w-96 h-96 bg-brand/10 rounded-full blur-[140px] pointer-events-none" />
+      <div className="absolute bottom-10 right-1/4 w-96 h-96 bg-brand-2/15 rounded-full blur-[140px] pointer-events-none" />
 
       <div className="max-w-4xl mx-auto relative z-10">
         {/* Back Button */}
         <div className="mb-8">
           <Link
             href="/"
-            className="inline-flex items-center gap-2 text-sm text-[#D6CDBD] hover:text-[#F08C2F] transition-colors"
+            className="inline-flex items-center gap-2 text-sm text-muted-foreground hover:text-brand transition-colors"
           >
             <ArrowLeft className="w-4 h-4" />
             <span>Back to Upcoming Events</span>
@@ -146,22 +146,22 @@ const CreateEventPage = () => {
         </div>
 
         {/* Form Container */}
-        <div className="bg-[#121218]/90 backdrop-blur-xl border border-white/10 rounded-3xl p-6 sm:p-10 shadow-2xl">
+        <div className="bg-card/90 backdrop-blur-xl border border-border rounded-3xl p-6 sm:p-10 shadow-2xl">
           {/* Header */}
           <div className="mb-8">
-            <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-white/5 border border-white/10 text-xs md:text-sm font-medium tracking-wide mb-4">
-              <span className="w-2.5 h-2.5 rounded-full bg-[#F08C2F] animate-pulse" />
+            <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-subtle border border-border text-xs md:text-sm font-medium tracking-wide mb-4">
+              <span className="w-2.5 h-2.5 rounded-full bg-brand animate-pulse" />
 
-              <span className="uppercase text-gray-300 tracking-widest font-semibold">
+              <span className="uppercase text-muted-foreground tracking-widest font-semibold">
                 Social Service Drive
               </span>
             </div>
 
-            <h1 className="text-3xl sm:text-4xl font-bold tracking-tight text-white mb-2">
+            <h1 className="text-3xl sm:text-4xl font-bold tracking-tight text-foreground mb-2">
               Create a Community Event
             </h1>
 
-            <p className="text-[#D6CDBD] text-sm md:text-base">
+            <p className="text-muted-foreground text-sm md:text-base">
               Organize a local relief effort, environmental cleanup, or
               community support drive.
             </p>
@@ -171,13 +171,13 @@ const CreateEventPage = () => {
           <form onSubmit={handleSubmit} className="space-y-6">
             {/* Event Title */}
             <div>
-              <label className="block text-sm font-medium text-white mb-2">
-                Event Title <span className="text-[#F08C2F]">*</span>
+              <label className="block text-sm font-medium text-foreground mb-2">
+                Event Title <span className="text-brand">*</span>
               </label>
 
               <div className="relative">
-                <span className="absolute inset-y-0 left-0 pl-4 flex items-center pointer-events-none text-gray-400">
-                  <Sparkles className="w-4 h-4 text-[#F08C2F]" />
+                <span className="absolute inset-y-0 left-0 pl-4 flex items-center pointer-events-none text-muted-foreground">
+                  <Sparkles className="w-4 h-4 text-brand" />
                 </span>
 
                 <input
@@ -187,7 +187,7 @@ const CreateEventPage = () => {
                   value={formData.title}
                   onChange={handleChange}
                   placeholder="e.g. Winter Clothes Distribution – Mirpur 10, Dhaka"
-                  className="w-full bg-[#2A2823]/60 border border-white/10 rounded-xl pl-11 pr-4 py-3.5 text-white placeholder-gray-500 focus:outline-none focus:border-[#F08C2F] transition text-sm sm:text-base"
+                  className="w-full bg-inset border border-border rounded-xl pl-11 pr-4 py-3.5 text-foreground placeholder:text-muted-foreground/60 focus:outline-none focus:border-brand transition text-sm sm:text-base"
                 />
               </div>
             </div>
@@ -196,35 +196,25 @@ const CreateEventPage = () => {
             <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
               {/* Event Type */}
               <div>
-                <label className="block text-sm font-medium text-white mb-2">
-                  Event Type <span className="text-[#F08C2F]">*</span>
+                <label className="block text-sm font-medium text-foreground mb-2">
+                  Event Type <span className="text-brand">*</span>
                 </label>
 
                 <select
                   name="type"
                   value={formData.type}
                   onChange={handleChange}
-                  className="w-full bg-[#2A2823]/60 border border-white/10 rounded-xl px-4 py-3.5 text-white focus:outline-none focus:border-[#F08C2F] transition text-sm sm:text-base"
+                  className="w-full bg-inset border border-border rounded-xl px-4 py-3.5 text-foreground focus:outline-none focus:border-brand transition text-sm sm:text-base"
                 >
-                  <option value="Donation" className="bg-[#2A2823] text-white">
-                    Donation
-                  </option>
+                  <option value="Donation">Donation</option>
 
-                  <option value="Cleanup" className="bg-[#2A2823] text-white">
-                    Cleanup Drive
-                  </option>
+                  <option value="Cleanup">Cleanup Drive</option>
 
-                  <option
-                    value="Food Distribution"
-                    className="bg-[#2A2823] text-white"
-                  >
+                  <option value="Food Distribution">
                     Food Distribution
                   </option>
 
-                  <option
-                    value="Tree Plantation"
-                    className="bg-[#2A2823] text-white"
-                  >
+                  <option value="Tree Plantation">
                     Tree Plantation
                   </option>
                 </select>
@@ -232,8 +222,8 @@ const CreateEventPage = () => {
 
               {/* Event Date */}
               <div>
-                <label className="block text-sm font-medium text-white mb-2">
-                  Event Date <span className="text-[#F08C2F]">*</span>
+                <label className="block text-sm font-medium text-foreground mb-2">
+                  Event Date <span className="text-brand">*</span>
                 </label>
 
                 <input
@@ -243,10 +233,10 @@ const CreateEventPage = () => {
                   min={today}
                   value={formData.date}
                   onChange={handleChange}
-                  className="w-full bg-[#2A2823]/60 border border-white/10 rounded-xl px-4 py-3.5 text-white focus:outline-none focus:border-[#F08C2F] transition text-sm sm:text-base"
+                  className="w-full bg-inset border border-border rounded-xl px-4 py-3.5 text-foreground focus:outline-none focus:border-brand transition text-sm sm:text-base"
                 />
 
-                <p className="text-[11px] text-[#D6CDBD]/70 mt-1">
+                <p className="text-[11px] text-muted-foreground/70 mt-1">
                   You can select today or any future date. Past dates are not
                   allowed.
                 </p>
@@ -255,13 +245,13 @@ const CreateEventPage = () => {
 
             {/* Location */}
             <div>
-              <label className="block text-sm font-medium text-white mb-2">
-                Location / Venue <span className="text-[#F08C2F]">*</span>
+              <label className="block text-sm font-medium text-foreground mb-2">
+                Location / Venue <span className="text-brand">*</span>
               </label>
 
               <div className="relative">
-                <span className="absolute inset-y-0 left-0 pl-4 flex items-center pointer-events-none text-gray-400">
-                  <MapPin className="w-4 h-4 text-[#884AE9]" />
+                <span className="absolute inset-y-0 left-0 pl-4 flex items-center pointer-events-none text-muted-foreground">
+                  <MapPin className="w-4 h-4 text-brand-2" />
                 </span>
 
                 <input
@@ -271,20 +261,20 @@ const CreateEventPage = () => {
                   value={formData.location}
                   onChange={handleChange}
                   placeholder="e.g. Mohammadpur Town Hall, Dhaka"
-                  className="w-full bg-[#2A2823]/60 border border-white/10 rounded-xl pl-11 pr-4 py-3.5 text-white placeholder-gray-500 focus:outline-none focus:border-[#F08C2F] transition text-sm sm:text-base"
+                  className="w-full bg-inset border border-border rounded-xl pl-11 pr-4 py-3.5 text-foreground placeholder:text-muted-foreground/60 focus:outline-none focus:border-brand transition text-sm sm:text-base"
                 />
               </div>
             </div>
 
             {/* Thumbnail URL */}
             <div>
-              <label className="block text-sm font-medium text-white mb-2">
-                Thumbnail Image URL <span className="text-[#F08C2F]">*</span>
+              <label className="block text-sm font-medium text-foreground mb-2">
+                Thumbnail Image URL <span className="text-brand">*</span>
               </label>
 
               <div className="relative">
-                <span className="absolute inset-y-0 left-0 pl-4 flex items-center pointer-events-none text-gray-400">
-                  <ImageIcon className="w-4 h-4 text-[#F08C2F]" />
+                <span className="absolute inset-y-0 left-0 pl-4 flex items-center pointer-events-none text-muted-foreground">
+                  <ImageIcon className="w-4 h-4 text-brand" />
                 </span>
 
                 <input
@@ -294,13 +284,13 @@ const CreateEventPage = () => {
                   value={formData.thumbnail}
                   onChange={handleChange}
                   placeholder="https://images.unsplash.com/photo-..."
-                  className="w-full bg-[#2A2823]/60 border border-white/10 rounded-xl pl-11 pr-4 py-3.5 text-white placeholder-gray-500 focus:outline-none focus:border-[#F08C2F] transition text-sm sm:text-base"
+                  className="w-full bg-inset border border-border rounded-xl pl-11 pr-4 py-3.5 text-foreground placeholder:text-muted-foreground/60 focus:outline-none focus:border-brand transition text-sm sm:text-base"
                 />
               </div>
 
               {/* Quick Photo Presets */}
               <div className="flex flex-wrap items-center gap-2 mt-2 text-xs">
-                <span className="text-[#D6CDBD]">Quick photo presets:</span>
+                <span className="text-muted-foreground">Quick photo presets:</span>
 
                 {[
                   "Winter Clothes",
@@ -312,7 +302,7 @@ const CreateEventPage = () => {
                     key={idx}
                     type="button"
                     onClick={() => handlePresetClick(preset)}
-                    className="text-[#EB8B42] hover:underline focus:outline-none"
+                    className="text-brand hover:underline focus:outline-none"
                   >
                     {preset}
                   </button>
@@ -322,8 +312,8 @@ const CreateEventPage = () => {
 
             {/* Description */}
             <div>
-              <label className="block text-sm font-medium text-white mb-2">
-                Event Description <span className="text-[#F08C2F]">*</span>
+              <label className="block text-sm font-medium text-foreground mb-2">
+                Event Description <span className="text-brand">*</span>
               </label>
 
               <textarea
@@ -333,17 +323,17 @@ const CreateEventPage = () => {
                 value={formData.description}
                 onChange={handleChange}
                 placeholder="Explain the purpose of the drive, volunteers required, items being distributed or tasks to complete..."
-                className="w-full bg-[#2A2823]/60 border border-white/10 rounded-xl p-4 text-white placeholder-gray-500 focus:outline-none focus:border-[#F08C2F] transition text-sm sm:text-base"
+                className="w-full bg-inset border border-border rounded-xl p-4 text-foreground placeholder:text-muted-foreground/60 focus:outline-none focus:border-brand transition text-sm sm:text-base"
               />
             </div>
 
             {/* Organizer Email */}
-            <div className="bg-[#2A2823]/40 border border-white/10 rounded-xl px-5 py-4 flex flex-col sm:flex-row sm:items-center justify-between gap-2">
-              <span className="text-sm text-[#D6CDBD]">
+            <div className="bg-elevated/40 border border-border rounded-xl px-5 py-4 flex flex-col sm:flex-row sm:items-center justify-between gap-2">
+              <span className="text-sm text-muted-foreground">
                 Organizer Email attached:
               </span>
 
-              <span className="text-sm font-semibold text-white bg-[#0A0A0E] px-3 py-1.5 rounded-lg border border-white/10 w-fit">
+              <span className="text-sm font-semibold text-foreground bg-background px-3 py-1.5 rounded-lg border border-border w-fit">
                 {organizerEmail ||
                   (isPending
                     ? "Checking session..."
@@ -356,7 +346,7 @@ const CreateEventPage = () => {
               <button
                 type="submit"
                 disabled={isSubmitting || isPending}
-                className="w-full py-4 rounded-xl font-bold text-white bg-gradient-to-r from-[#F08C2F] to-[#884AE9] hover:opacity-90 transition duration-300 shadow-lg flex items-center justify-center gap-2 text-base cursor-pointer disabled:opacity-60 disabled:cursor-not-allowed"
+                className="w-full py-4 rounded-xl font-bold text-white bg-gradient-to-r from-brand to-brand-2 hover:opacity-90 transition duration-300 shadow-lg flex items-center justify-center gap-2 text-base cursor-pointer disabled:opacity-60 disabled:cursor-not-allowed"
               >
                 <PlusCircle className="w-5 h-5" />
 

@@ -92,27 +92,27 @@ export default function SignUpPage() {
   }
 
   return (
-    <div className="min-h-screen bg-[#0A0A0E] text-white flex items-center justify-center px-4 py-8 font-['Space_Grotesk'] relative overflow-hidden">
+    <div className="min-h-screen bg-background text-foreground flex items-center justify-center px-4 py-8 relative overflow-hidden">
 
       {/* Background Glow */}
-      <div className="absolute top-10 left-1/4 w-72 h-72 bg-[#F08C2F]/15 rounded-full blur-[120px] pointer-events-none" />
+      <div className="absolute top-10 left-1/4 w-72 h-72 bg-brand/15 rounded-full blur-[120px] pointer-events-none" />
 
-      <div className="absolute bottom-10 right-1/4 w-72 h-72 bg-[#8E54DF]/20 rounded-full blur-[120px] pointer-events-none" />
+      <div className="absolute bottom-10 right-1/4 w-72 h-72 bg-brand-2/20 rounded-full blur-[120px] pointer-events-none" />
 
       {/* Signup Container */}
       <div className="w-full max-w-md relative z-10">
 
         {/* Signup Card */}
-        <Card className="w-full bg-[#2A2823]/70 backdrop-blur-2xl border border-white/10 rounded-2xl px-6 sm:px-9 py-7 sm:py-8 shadow-[0_20px_50px_rgba(0,0,0,0.7)] text-white">
+        <Card className="w-full bg-elevated/70 backdrop-blur-2xl border border-border rounded-2xl px-6 sm:px-9 py-7 sm:py-8 shadow-[0_20px_50px_rgba(0,0,0,0.25)] dark:shadow-[0_20px_50px_rgba(0,0,0,0.7)] text-foreground">
 
           {/* Heading */}
           <CardHeader className="text-center px-0 pt-0 pb-6">
 
-            <CardTitle className="text-2xl sm:text-3xl font-bold tracking-tight text-white mb-2">
+            <CardTitle className="text-2xl sm:text-3xl font-bold tracking-tight text-foreground mb-2">
               Create Account
             </CardTitle>
 
-            <CardDescription className="text-[#D6CDBD] text-sm">
+            <CardDescription className="text-muted-foreground text-sm">
               Join the community and start driving social change
             </CardDescription>
 
@@ -133,7 +133,7 @@ export default function SignUpPage() {
 
                   <FieldLabel
                     htmlFor="name"
-                    className="text-sm font-medium text-white"
+                    className="text-sm font-medium text-foreground"
                   >
                     Full Name
                   </FieldLabel>
@@ -141,7 +141,7 @@ export default function SignUpPage() {
                   <div className="relative">
 
                     <span className="absolute inset-y-0 left-0 pl-3.5 flex items-center pointer-events-none">
-                      <User className="w-4 h-4 text-[#F08C2F]" />
+                      <User className="w-4 h-4 text-brand" />
                     </span>
 
                     <Input
@@ -150,7 +150,7 @@ export default function SignUpPage() {
                       type="text"
                       placeholder="Rifa Tamanna"
                       required
-                      className="w-full h-11 bg-black/40 border border-white/10 rounded-xl pl-10 pr-3 text-sm text-white placeholder:text-gray-500 focus-visible:ring-1 focus-visible:ring-[#F08C2F]/40 focus-visible:border-[#F08C2F] transition-all backdrop-blur-md"
+                      className="w-full h-11 bg-inset border border-border rounded-xl pl-10 pr-3 text-sm text-foreground focus-visible:ring-1 focus-visible:ring-brand/40 focus-visible:border-brand transition-all backdrop-blur-md"
                     />
 
                   </div>
@@ -162,7 +162,7 @@ export default function SignUpPage() {
 
                   <FieldLabel
                     htmlFor="email"
-                    className="text-sm font-medium text-white"
+                    className="text-sm font-medium text-foreground"
                   >
                     Email Address
                   </FieldLabel>
@@ -170,7 +170,7 @@ export default function SignUpPage() {
                   <div className="relative">
 
                     <span className="absolute inset-y-0 left-0 pl-3.5 flex items-center pointer-events-none">
-                      <Mail className="w-4 h-4 text-[#8E54DF]" />
+                      <Mail className="w-4 h-4 text-brand-2" />
                     </span>
 
                     <Input
@@ -179,7 +179,7 @@ export default function SignUpPage() {
                       type="email"
                       placeholder="name@example.com"
                       required
-                      className="w-full h-11 bg-black/40 border border-white/10 rounded-xl pl-10 pr-3 text-sm text-white placeholder:text-gray-500 focus-visible:ring-1 focus-visible:ring-[#F08C2F]/40 focus-visible:border-[#F08C2F] transition-all backdrop-blur-md"
+                      className="w-full h-11 bg-inset border border-border rounded-xl pl-10 pr-3 text-sm text-foreground focus-visible:ring-1 focus-visible:ring-brand/40 focus-visible:border-brand transition-all backdrop-blur-md"
                     />
 
                   </div>
@@ -191,7 +191,7 @@ export default function SignUpPage() {
 
                   <FieldLabel
                     htmlFor="image"
-                    className="text-sm font-medium text-white"
+                    className="text-sm font-medium text-foreground"
                   >
                     Profile Photo URL
                   </FieldLabel>
@@ -199,7 +199,7 @@ export default function SignUpPage() {
                   <div className="relative">
 
                     <span className="absolute inset-y-0 left-0 pl-3.5 flex items-center pointer-events-none">
-                      <ImageIcon className="w-4 h-4 text-[#F08C2F]" />
+                      <ImageIcon className="w-4 h-4 text-brand" />
                     </span>
 
                     <Input
@@ -207,12 +207,12 @@ export default function SignUpPage() {
                       name="image"
                       type="url"
                       placeholder="https://images.unsplash.com/..."
-                      className="w-full h-11 bg-black/40 border border-white/10 rounded-xl pl-10 pr-3 text-sm text-white placeholder:text-gray-500 focus-visible:ring-1 focus-visible:ring-[#F08C2F]/40 focus-visible:border-[#F08C2F] transition-all backdrop-blur-md"
+                      className="w-full h-11 bg-inset border border-border rounded-xl pl-10 pr-3 text-sm text-foreground focus-visible:ring-1 focus-visible:ring-brand/40 focus-visible:border-brand transition-all backdrop-blur-md"
                     />
 
                   </div>
 
-                  <FieldDescription className="text-xs text-[#D6CDBD]/70 mt-1">
+                  <FieldDescription className="text-xs text-muted-foreground/70 mt-1">
                     Optional: Leave empty for default avatar
                   </FieldDescription>
 
@@ -223,7 +223,7 @@ export default function SignUpPage() {
 
                   <FieldLabel
                     htmlFor="password"
-                    className="text-sm font-medium text-white"
+                    className="text-sm font-medium text-foreground"
                   >
                     Password
                   </FieldLabel>
@@ -231,7 +231,7 @@ export default function SignUpPage() {
                   <div className="relative">
 
                     <span className="absolute inset-y-0 left-0 pl-3.5 flex items-center pointer-events-none">
-                      <Lock className="w-4 h-4 text-[#8E54DF]" />
+                      <Lock className="w-4 h-4 text-brand-2" />
                     </span>
 
                     <Input
@@ -244,7 +244,7 @@ export default function SignUpPage() {
                       }
                       placeholder="••••••••"
                       required
-                      className="w-full h-11 bg-black/40 border border-white/10 rounded-xl pl-10 pr-10 text-sm text-white placeholder:text-gray-500 focus-visible:ring-1 focus-visible:ring-[#F08C2F]/40 focus-visible:border-[#F08C2F] transition-all backdrop-blur-md"
+                      className="w-full h-11 bg-inset border border-border rounded-xl pl-10 pr-10 text-sm text-foreground focus-visible:ring-1 focus-visible:ring-brand/40 focus-visible:border-brand transition-all backdrop-blur-md"
                     />
 
                     <button
@@ -252,7 +252,7 @@ export default function SignUpPage() {
                       onClick={() =>
                         setShowPassword(!showPassword)
                       }
-                      className="absolute inset-y-0 right-0 pr-3.5 flex items-center text-gray-400 hover:text-white transition-colors"
+                      className="absolute inset-y-0 right-0 pr-3.5 flex items-center text-muted-foreground hover:text-foreground transition-colors"
                     >
                       {showPassword ? (
                         <EyeOff className="w-4 h-4" />
@@ -269,8 +269,8 @@ export default function SignUpPage() {
                     <p
                       className={`flex items-center gap-2 ${
                         hasUpperCase
-                          ? "text-green-400"
-                          : "text-[#D6CDBD]/70"
+                          ? "text-success"
+                          : "text-muted-foreground/70"
                       }`}
                     >
                       {hasUpperCase ? (
@@ -285,8 +285,8 @@ export default function SignUpPage() {
                     <p
                       className={`flex items-center gap-2 ${
                         hasLowerCase
-                          ? "text-green-400"
-                          : "text-[#D6CDBD]/70"
+                          ? "text-success"
+                          : "text-muted-foreground/70"
                       }`}
                     >
                       {hasLowerCase ? (
@@ -301,8 +301,8 @@ export default function SignUpPage() {
                     <p
                       className={`flex items-center gap-2 ${
                         hasMinLength
-                          ? "text-green-400"
-                          : "text-[#D6CDBD]/70"
+                          ? "text-success"
+                          : "text-muted-foreground/70"
                       }`}
                     >
                       {hasMinLength ? (
@@ -323,7 +323,7 @@ export default function SignUpPage() {
 
                   <Button
                     type="submit"
-                    className="w-full h-12 rounded-xl font-bold text-black bg-gradient-to-r from-[#F08C2F] to-[#8E54DF] hover:opacity-90 transition-all duration-300 shadow-md shadow-[#F08C2F]/20 text-sm cursor-pointer disabled:opacity-50 disabled:cursor-not-allowed"
+                    className="w-full h-12 rounded-xl font-bold text-black bg-gradient-to-r from-brand to-brand-2 hover:opacity-90 transition-all duration-300 shadow-md shadow-brand/20 text-sm cursor-pointer disabled:opacity-50 disabled:cursor-not-allowed"
                   >
                     Register
 
@@ -333,7 +333,7 @@ export default function SignUpPage() {
                   <Button 
                     onClick={handleGoogleSignUp}
                     type="submit"
-                    className="w-full h-12 rounded-xl font-bold text-black bg-[#F08C2F] hover:text-white transition-all duration-300 shadow-md shadow-[#F08C2F]/20 text-sm cursor-pointer disabled:opacity-50 disabled:cursor-not-allowed"
+                    className="w-full h-12 rounded-xl font-bold text-black bg-brand hover:opacity-90 transition-all duration-300 shadow-md shadow-brand/20 text-sm cursor-pointer disabled:opacity-50 disabled:cursor-not-allowed"
                   >
                     Sign Up with Google
 
@@ -349,12 +349,12 @@ export default function SignUpPage() {
             {/* Login Link */}
             <div className="text-center mt-6">
 
-              <FieldDescription className="text-sm text-[#D6CDBD]">
+              <FieldDescription className="text-sm text-muted-foreground">
                 Already have an account?{" "}
 
                 <Link
                   href="/signin"
-                  className="text-[#F08C2F] font-semibold hover:underline"
+                  className="text-brand font-semibold hover:underline"
                 >
                   Sign In
                 </Link>

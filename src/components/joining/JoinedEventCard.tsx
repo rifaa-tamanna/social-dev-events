@@ -135,21 +135,21 @@ const JoinedEventCard = ({ data }: JoinedEventCardProps) => {
   };
 
   return (
-    <div className="px-6 sm:px-10 py-6 border-b border-white/10 bg-[#2A2823]/40 flex flex-col sm:flex-row items-center justify-between gap-4">
+    <div className="px-6 sm:px-10 py-6 border-b border-border bg-elevated/40 flex flex-col sm:flex-row items-center justify-between gap-4">
 
       {/* Volunteer Information */}
       <div className="flex items-center gap-4 w-full sm:w-auto">
 
-        <div className="w-12 h-12 rounded-2xl bg-[#8E54DF]/15 border border-[#8E54DF]/30 flex items-center justify-center text-[#8E54DF]">
+        <div className="w-12 h-12 rounded-2xl bg-brand-2/15 border border-brand-2/30 flex items-center justify-center text-brand-2">
           <Users className="w-6 h-6" />
         </div>
 
         <div>
-          <h4 className="text-base font-bold text-white">
+          <h4 className="text-base font-bold text-foreground">
             {data.volunteersCount || 0} Volunteers Joined
           </h4>
 
-          <p className="text-xs text-[#D6CDBD]">
+          <p className="text-xs text-muted-foreground">
             Sign up to join hands for this drive
           </p>
         </div>
@@ -161,7 +161,7 @@ const JoinedEventCard = ({ data }: JoinedEventCardProps) => {
 
         <button
           type="button"
-          className="p-3 rounded-xl border border-white/10 bg-white/5 hover:bg-white/10 text-white transition cursor-pointer"
+          className="p-3 rounded-xl border border-border bg-subtle hover:bg-elevated text-foreground transition cursor-pointer"
           aria-label="Share Event"
         >
           <Share2 className="w-5 h-5" />
@@ -172,7 +172,7 @@ const JoinedEventCard = ({ data }: JoinedEventCardProps) => {
             type="button"
             onClick={handleLeaveEvent}
             disabled={loading}
-            className="px-6 py-3 rounded-xl font-bold text-white bg-red-500/80 hover:bg-red-600 transition flex items-center justify-center gap-2 cursor-pointer disabled:opacity-50 disabled:cursor-not-allowed"
+            className="px-6 py-3 rounded-xl font-bold text-white bg-destructive/80 hover:bg-destructive transition flex items-center justify-center gap-2 cursor-pointer disabled:opacity-50 disabled:cursor-not-allowed"
           >
             <Heart className="w-4 h-4" />
 
@@ -185,7 +185,7 @@ const JoinedEventCard = ({ data }: JoinedEventCardProps) => {
             <button
               type="submit"
               disabled={loading}
-              className="px-6 py-3 rounded-xl font-bold text-black bg-gradient-to-r from-[#F08C2F] to-[#8E54DF] hover:opacity-95 transition shadow-lg shadow-[#F08C2F]/20 flex items-center justify-center gap-2 cursor-pointer disabled:opacity-50 disabled:cursor-not-allowed"
+              className="px-6 py-3 rounded-xl font-bold text-black bg-gradient-to-r from-brand to-brand-2 hover:opacity-95 transition shadow-lg shadow-brand/20 flex items-center justify-center gap-2 cursor-pointer disabled:opacity-50 disabled:cursor-not-allowed"
             >
               <Heart className="w-4 h-4 fill-black" />
 

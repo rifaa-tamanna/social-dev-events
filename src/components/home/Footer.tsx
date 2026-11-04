@@ -10,12 +10,12 @@ import Image from "next/image";
 
 const Footer = () => {
   return (
-    <footer className="relative bg-[#0A0A0E] text-white pt-20 pb-10 px-6 md:px-12 font-['Space_Grotesk'] border-t border-white/10 overflow-hidden">
+    <footer className="relative bg-background text-foreground pt-20 pb-10 px-6 md:px-12 border-t border-border overflow-hidden">
       {/* Background Glow */}
-      <div className="absolute bottom-0 left-1/2 -translate-x-1/2 w-[600px] h-[200px] bg-[#884AE9]/10 rounded-full blur-[140px] pointer-events-none" />
+      <div className="absolute bottom-0 left-1/2 -translate-x-1/2 w-[600px] h-[200px] bg-brand-2/10 rounded-full blur-[140px] pointer-events-none" />
       <div className="max-w-7xl mx-auto relative z-10">
         {/* Main Footer Content Grid */}
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-12 pb-16 border-b border-white/10">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-12 pb-16 border-b border-border">
           {/* Column 1: Brand & Bio */}
           <div className="lg:col-span-2 flex flex-col gap-5">
             <Link href="/" className="flex items-center gap-2">
@@ -27,7 +27,7 @@ const Footer = () => {
               />
             </Link>
 
-            <p className="text-[#D6CDBD] text-sm leading-relaxed max-w-sm">
+            <p className="text-muted-foreground text-sm leading-relaxed max-w-sm">
               Empowering grassroots action, connecting local volunteers, and
               organizing impactful community drives across the nation.
             </p>
@@ -36,25 +36,25 @@ const Footer = () => {
             <div className="flex items-center gap-3 pt-2">
               <a
                 href="#"
-                className="w-9 h-9 rounded-full bg-[#2A2823] border border-white/15 hover:border-[#F08C2F] hover:bg-[#F08C2F] hover:text-black flex items-center justify-center text-white transition-all duration-300"
+                className="w-9 h-9 rounded-full bg-elevated border border-border hover:border-brand hover:bg-brand hover:text-black flex items-center justify-center text-foreground transition-all duration-300"
               >
                 <FaLinkedinIn className="w-4 h-4" />
               </a>
               <a
                 href="#"
-                className="w-9 h-9 rounded-full bg-[#2A2823] border border-white/15 hover:border-[#F08C2F] hover:bg-[#F08C2F] hover:text-black flex items-center justify-center text-white transition-all duration-300"
+                className="w-9 h-9 rounded-full bg-elevated border border-border hover:border-brand hover:bg-brand hover:text-black flex items-center justify-center text-foreground transition-all duration-300"
               >
                 <FaXTwitter className="w-4 h-4" />
               </a>
               <a
                 href="#"
-                className="w-9 h-9 rounded-full bg-[#2A2823] border border-white/15 hover:border-[#F08C2F] hover:bg-[#F08C2F] hover:text-black flex items-center justify-center text-white transition-all duration-300"
+                className="w-9 h-9 rounded-full bg-elevated border border-border hover:border-brand hover:bg-brand hover:text-black flex items-center justify-center text-foreground transition-all duration-300"
               >
                 <FaInstagram className="w-4 h-4" />
               </a>
               <a
                 href="#"
-                className="w-9 h-9 rounded-full bg-[#2A2823] border border-white/15 hover:border-[#F08C2F] hover:bg-[#F08C2F] hover:text-black flex items-center justify-center text-white transition-all duration-300"
+                className="w-9 h-9 rounded-full bg-elevated border border-border hover:border-brand hover:bg-brand hover:text-black flex items-center justify-center text-foreground transition-all duration-300"
               >
                 <FaFacebookF className="w-4 h-4" />
               </a>
@@ -63,14 +63,14 @@ const Footer = () => {
 
           {/* Column 2: Quick Links */}
           <div className="flex flex-col gap-4">
-            <h4 className="text-sm font-semibold uppercase tracking-widest text-[#F08C2F]">
+            <h4 className="text-sm font-semibold uppercase tracking-widest text-brand">
               Platform
             </h4>
-            <ul className="flex flex-col gap-2.5 text-sm text-[#D6CDBD]">
+            <ul className="flex flex-col gap-2.5 text-sm text-muted-foreground">
               <li>
                 <Link
                   href="/events"
-                  className="hover:text-white transition-colors"
+                  className="hover:text-foreground transition-colors"
                 >
                   Upcoming Events
                 </Link>
@@ -78,7 +78,7 @@ const Footer = () => {
               <li>
                 <Link
                   href="/create-event"
-                  className="hover:text-white transition-colors"
+                  className="hover:text-foreground transition-colors"
                 >
                   Create an Event
                 </Link>
@@ -86,7 +86,7 @@ const Footer = () => {
               <li>
                 <Link
                   href="/manage-event"
-                  className="hover:text-white transition-colors"
+                  className="hover:text-foreground transition-colors"
                 >
                   Manage My Events
                 </Link>
@@ -94,7 +94,7 @@ const Footer = () => {
               <li>
                 <Link
                   href="/joined-event"
-                  className="hover:text-white transition-colors"
+                  className="hover:text-foreground transition-colors"
                 >
                   My Joined Events
                 </Link>
@@ -104,27 +104,27 @@ const Footer = () => {
 
           {/* Column 3: Impact Initiatives */}
           <div className="flex flex-col gap-4">
-            <h4 className="text-sm font-semibold uppercase tracking-widest text-[#884AE9]">
+            <h4 className="text-sm font-semibold uppercase tracking-widest text-brand-2">
               Initiatives
             </h4>
-            <ul className="flex flex-col gap-2.5 text-sm text-[#D6CDBD]">
+            <ul className="flex flex-col gap-2.5 text-sm text-muted-foreground">
               <li>
-                <Link href="" className="hover:text-white transition-colors">
+                <Link href="" className="hover:text-foreground transition-colors">
                   Winter Relief Drives
                 </Link>
               </li>
               <li>
-                <Link href="" className="hover:text-white transition-colors">
+                <Link href="" className="hover:text-foreground transition-colors">
                   Food Distribution
                 </Link>
               </li>
               <li>
-                <Link href="" className="hover:text-white transition-colors">
+                <Link href="" className="hover:text-foreground transition-colors">
                   Community Cleanups
                 </Link>
               </li>
               <li>
-                <Link href="" className="hover:text-white transition-colors">
+                <Link href="" className="hover:text-foreground transition-colors">
                   Youth Volunteering
                 </Link>
               </li>
@@ -133,29 +133,29 @@ const Footer = () => {
 
           {/* Column 4: Support & Legal */}
           <div className="flex flex-col gap-4">
-            <h4 className="text-sm font-semibold uppercase tracking-widest text-white">
+            <h4 className="text-sm font-semibold uppercase tracking-widest text-foreground">
               Support
             </h4>
-            <ul className="flex flex-col gap-2.5 text-sm text-[#D6CDBD]">
+            <ul className="flex flex-col gap-2.5 text-sm text-muted-foreground">
               <li>
-                <Link href="" className="hover:text-white transition-colors">
+                <Link href="" className="hover:text-foreground transition-colors">
                   Help Center
                 </Link>
               </li>
               <li>
-                <Link href="" className="hover:text-white transition-colors">
+                <Link href="" className="hover:text-foreground transition-colors">
                   Terms of Service
                 </Link>
               </li>
               <li>
-                <Link href="" className="hover:text-white transition-colors">
+                <Link href="" className="hover:text-foreground transition-colors">
                   Privacy Policy
                 </Link>
               </li>
               <li>
                 <Link
                   href=""
-                  className="inline-flex items-center gap-1 hover:text-[#F08C2F] transition-colors"
+                  className="inline-flex items-center gap-1 hover:text-brand transition-colors"
                 >
                   <span>Contact Us</span>
                   <ArrowUpRight className="w-3.5 h-3.5" />
@@ -166,11 +166,11 @@ const Footer = () => {
         </div>
 
         {/* Bottom Bar */}
-        <div className="pt-8 flex flex-col md:flex-row items-center justify-between gap-4 text-[16px] text-[#D6CDBD]">
+        <div className="pt-8 flex flex-col md:flex-row items-center justify-between gap-4 text-[16px] text-muted-foreground">
           <p>© {new Date().getFullYear()} Social Development Events. All rights reserved.</p>
           <p className="flex items-center gap-1.5">
             <span>Made With for</span>
-            <Heart className="w-3.5 h-3.5 text-[#F08C2F] fill-[#F08C2F]" />
+            <Heart className="w-3.5 h-3.5 text-brand fill-brand" />
             <span>A Better Tomorrow</span>
           </p>
         </div>

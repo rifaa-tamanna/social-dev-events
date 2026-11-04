@@ -84,24 +84,27 @@ const ReviewsSection = () => {
   };
 
   return (
-    <section className="relative bg-[#0A0A0E] py-20 px-6 md:px-12 overflow-hidden font-['Space_Grotesk']">
+    <section className="relative bg-background py-20 px-6 md:px-12 overflow-hidden">
       {/* Background Glow */}
-      <div className="absolute top-10 right-0 w-96 h-96 bg-[#884AE9]/10 rounded-full blur-[140px] pointer-events-none" />
-      <div className="absolute bottom-0 left-0 w-80 h-80 bg-[#F08C2F]/5 rounded-full blur-[140px] pointer-events-none" />
+      <div className="absolute top-10 right-0 w-96 h-96 bg-brand-2/10 rounded-full blur-[140px] pointer-events-none" />
+      <div className="absolute bottom-0 left-0 w-80 h-80 bg-brand/5 rounded-full blur-[140px] pointer-events-none" />
 
       <div className="max-w-7xl mx-auto relative z-10">
         {/* Section Heading */}
         <div className="text-center max-w-2xl mx-auto mb-14">
-          <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-white/[0.04] border border-white/10 text-xs font-semibold tracking-widest text-[#D6CDBD] mb-5">
-            <MessageCircle className="w-4 h-4 text-[#F08C2F]" />
+          <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-subtle border border-border text-xs font-semibold tracking-widest text-muted-foreground mb-5">
+            <MessageCircle className="w-4 h-4 text-brand" />
             COMMUNITY VOICES
           </div>
 
-          <h2 className="text-3xl sm:text-4xl lg:text-5xl font-bold text-white mb-4">
-            What People Say About Us
+          <h2 className="text-3xl sm:text-4xl lg:text-5xl font-bold text-foreground mb-4">
+            What People Say {" "}
+            <span className="bg-gradient-to-r from-brand to-brand-2 bg-clip-text text-transparent">
+              About Us
+            </span>
           </h2>
 
-          <p className="text-[#D6CDBD]/70 text-sm sm:text-base leading-relaxed">
+          <p className="text-muted-foreground/70 text-sm sm:text-base leading-relaxed">
             Real experiences from people who are making a difference through
             community initiatives.
           </p>
@@ -111,16 +114,15 @@ const ReviewsSection = () => {
         <div className="flex flex-col sm:flex-row items-center justify-center gap-4 mb-12">
           <div className="flex items-center gap-1">
             {[1, 2, 3, 4, 5].map((star) => (
-              <Star
-                key={star}
-                className="w-5 h-5 fill-[#F08C2F] text-[#F08C2F]"
-              />
+              <Star key={star} className="w-5 h-5 fill-brand text-brand" />
             ))}
           </div>
 
           <div className="text-center sm:text-left">
-            <p className="text-white font-bold text-lg">4.8 / 5</p>
-            <p className="text-xs text-[#D6CDBD]/60">Community satisfaction</p>
+            <p className="text-foreground font-bold text-lg">4.8 / 5</p>
+            <p className="text-xs text-muted-foreground/60">
+              Community satisfaction
+            </p>
           </div>
         </div>
 
@@ -129,14 +131,14 @@ const ReviewsSection = () => {
           {visibleReviews.map((review) => (
             <div
               key={review.id}
-              className="relative bg-[#121218]/90 border border-white/10 rounded-3xl p-7 hover:border-[#F08C2F]/40 transition-all duration-300 group"
+              className="relative bg-card/90 border border-border rounded-3xl p-7 hover:border-brand/40 transition-all duration-300 group"
             >
               <div className="flex items-center justify-between mb-6">
-                <div className="w-11 h-11 rounded-xl bg-gradient-to-br from-[#F08C2F] to-[#884AE9] flex items-center justify-center text-white font-bold text-sm">
+                <div className="w-11 h-11 rounded-xl bg-gradient-to-br from-brand to-brand-2 flex items-center justify-center text-white font-bold text-sm">
                   {review.avatar}
                 </div>
 
-                <Quote className="w-8 h-8 text-[#884AE9]/40 group-hover:text-[#F08C2F]/60 transition-colors" />
+                <Quote className="w-8 h-8 text-brand-2/40 group-hover:text-brand/60 transition-colors" />
               </div>
 
               {/* Stars */}
@@ -146,25 +148,27 @@ const ReviewsSection = () => {
                     key={star}
                     className={`w-4 h-4 ${
                       star <= review.rating
-                        ? "fill-[#F08C2F] text-[#F08C2F]"
-                        : "text-white/15"
+                        ? "fill-brand text-brand"
+                        : "text-foreground/15"
                     }`}
                   />
                 ))}
               </div>
 
               {/* Review Text */}
-              <p className="text-[#D6CDBD]/80 text-sm leading-7 min-h-[112px]">
-                "{review.review}"
+              <p className="text-muted-foreground/80 text-sm leading-7 min-h-[112px]">
+                &quot;{review.review}&quot;
               </p>
 
               {/* User Info */}
-              <div className="mt-6 pt-5 border-t border-white/10">
-                <h3 className="text-white font-semibold text-sm">
+              <div className="mt-6 pt-5 border-t border-border">
+                <h3 className="text-foreground font-semibold text-sm">
                   {review.name}
                 </h3>
 
-                <p className="text-xs text-[#D6CDBD]/50 mt-1">{review.role}</p>
+                <p className="text-xs text-muted-foreground/50 mt-1">
+                  {review.role}
+                </p>
               </div>
             </div>
           ))}
@@ -176,7 +180,7 @@ const ReviewsSection = () => {
             type="button"
             onClick={previousReview}
             aria-label="Previous reviews"
-            className="w-11 h-11 rounded-full border border-white/15 flex items-center justify-center text-white hover:bg-[#F08C2F] hover:text-black hover:border-[#F08C2F] transition-all"
+            className="w-11 h-11 rounded-full border border-border flex items-center justify-center text-foreground hover:bg-brand hover:text-black hover:border-brand transition-all"
           >
             <ChevronLeft className="w-5 h-5" />
           </button>
@@ -190,8 +194,8 @@ const ReviewsSection = () => {
                 aria-label={`Show review group ${index + 1}`}
                 className={`h-2 rounded-full transition-all ${
                   activeIndex === index
-                    ? "w-7 bg-[#F08C2F]"
-                    : "w-2 bg-white/20 hover:bg-white/50"
+                    ? "w-7 bg-brand"
+                    : "w-2 bg-foreground/20 hover:bg-foreground/50"
                 }`}
               />
             ))}
@@ -201,7 +205,7 @@ const ReviewsSection = () => {
             type="button"
             onClick={nextReview}
             aria-label="Next reviews"
-            className="w-11 h-11 rounded-full border border-white/15 flex items-center justify-center text-white hover:bg-[#884AE9] hover:border-[#884AE9] transition-all"
+            className="w-11 h-11 rounded-full border border-border flex items-center justify-center text-foreground hover:bg-brand-2 hover:border-brand-2 hover:text-white transition-all"
           >
             <ChevronRight className="w-5 h-5" />
           </button>
