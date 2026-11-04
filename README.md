@@ -1,36 +1,273 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# 🌍 Social Development Events
 
-## Getting Started
+A full-stack web application that connects people with meaningful community events and social development activities. Users can explore events, join volunteer activities, manage their participation, and contribute to positive social change.
 
-First, run the development server:
+## 🔗 Live Demo
+
+- **Live Website:** https://social-dev-events.vercel.app
+- **Frontend Repository:** https://github.com/rifaa-tamanna/social-dev-events
+- **Backend Repository:** https://github.com/rifaa-tamanna/social-dev-events-server
+
+---
+
+## ✨ Key Features
+
+### 👤 Authentication & Security
+
+- User authentication with Better Auth.
+- Google OAuth integration for easy signup and login.
+- Protected user-specific features.
+- JWT verification on the backend to validate authenticated requests.
+- Secure authentication and authorization flow.
+
+### 📅 Event Management
+
+- Browse upcoming community events.
+- View event details, dates, locations, and descriptions.
+- Create and publish new events.
+- Manage personal events.
+- Edit and delete events.
+- View event categories and information.
+
+### 🤝 Event Participation
+
+- Join available events.
+- View all joined events.
+- Leave previously joined events.
+- Track participation through a personal dashboard.
+
+### 🎨 User Experience
+
+- Responsive design for mobile, tablet, and desktop.
+- Light and dark theme support.
+- Interactive UI components.
+- Loading skeletons and user-friendly empty states.
+- Toast notifications for success and error feedback.
+- Custom 404 Not Found page.
+
+---
+
+## 🛠️ Technology Stack
+
+### Frontend
+
+- Next.js
+- React
+- TypeScript
+- Tailwind CSS
+- shadcn/ui
+- Lucide React
+- Better Auth Client
+- React Toastify
+- next-themes
+
+### Backend
+
+- Node.js
+- Express.js
+- MongoDB
+- VerificationJWT&#x20;
+
+### Authentication
+
+- Better Auth
+- Google OAuth 2.0
+- JWT Verification
+
+### Deployment
+
+- Vercel (Frontend)
+  https://vercel.com
+
+---
+
+## 🔐 Authentication & Security
+
+This application uses Better Auth for user authentication and Google OAuth for social login.
+
+The backend verifies JWT tokens to validate authenticated requests before allowing access to protected resources.
+
+Security features include:
+
+- Google OAuth authentication.
+- Protected API endpoints.
+- JWT token verification on the backend.
+- User-specific event management.
+- Authentication-based access control.
+
+---
+
+## 📂 Project Structure
+
+### Frontend
+
+```text
+frontend/
+├── public/
+├── src/
+│   ├── app/
+│   ├── components/
+│   │   ├── ui/
+│   │   └── skeletons/
+│   ├── lib/
+│   ├── hooks/
+│   └── types/
+├── .env.local
+├── package.json
+└── README.md
+```
+
+### Backend
+
+```text
+backend/
+├── routes/
+├── middleware/
+├── config/
+├── controllers/
+├── index.js
+├── .env
+└── package.json
+```
+
+*Adjust the folder names above to match your actual project structure.*
+
+---
+
+**Important:** Never commit `.env` or `.env.local` files to GitHub. Keep all secret keys and credentials private.
+
+Use the exact environment variable names configured in your application.
+
+---
+
+## 🚀 Getting Started
+
+### Prerequisites
+
+Make sure you have installed:
+
+- Node.js
+- npm
+- MongoDB account or local MongoDB
+- Google Cloud OAuth credentials
+
+### 1. Clone the Frontend Repository
+
+```bash
+git clone https://github.com/rifaa-tamanna/social-dev-events
+```
+
+```bash
+cd frontend
+```
+
+### 2. Install Frontend Dependencies
+
+```bash
+npm install
+```
+
+### 3. Configure Environment Variables
+
+Create a `.env.local` file and add your frontend environment variables.
+
+### 4. Start the Frontend
 
 ```bash
 npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+Frontend will run at:
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+```text
+http://localhost:3000
+```
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+### 5. Clone the Backend Repository
 
-## Learn More
+```bash
+git clone https://github.com/rifaa-tamanna/social-dev-events-server
+```
 
-To learn more about Next.js, take a look at the following resources:
+```bash
+cd backend
+```
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+### 6. Install Backend Dependencies
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+```bash
+npm install
+```
 
-## Deploy on Vercel
+### 7. Configure Backend Environment Variables
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+Create a `.env` file and configure MongoDB, JWT, and frontend URL settings.
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+### 8. Start the Backend
+
+```bash
+npm run dev
+```
+
+*Use the start command defined in your backend `package.json`.*
+
+---
+
+## 🌐 Deployment
+
+The frontend is deployed on Vercel.
+
+For production deployment:
+
+1. Push the latest code to GitHub.
+2. Connect the repository to Vercel.
+3. Configure the required environment variables.
+4. Set the correct production URL in Better Auth.
+5. Add the production Google OAuth origin and redirect URI in Google Cloud Console.
+6. Deploy the application.
+7. Verify Google authentication and protected API endpoints.
+
+---
+
+## 🔒 Google OAuth Configuration
+
+For local development:
+
+**Authorized JavaScript Origin**
+
+```text
+http://localhost:3000
+```
+
+**Authorized Redirect URI**
+
+```text
+https://social-dev-events.vercel.app/api/auth/callback/google
+```
+
+For production, add your actual Vercel domain and its corresponding Better Auth callback URL.
+
+---
+
+## 🎯 Project Goals
+
+The goal of Social Development Events is to make community participation easier by connecting people with meaningful social initiatives.
+
+It provides a platform where organizers can manage events and users can discover opportunities to contribute to their communities.
+
+---
+
+## 👩‍💻 Developer
+
+**Rifa Tamanna**
+
+Full Stack Web Developer
+
+- GitHub: https://github.com/rifaa-tamanna
+
+---
+
+⭐ If you find this project useful, feel free to explore the repository and share your feedback.
+
+**Built with ❤️ to encourage community engagement and social impact.**
+
